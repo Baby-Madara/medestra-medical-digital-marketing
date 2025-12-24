@@ -44,11 +44,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-             <div className="text-3xl font-extrabold tracking-tighter select-none">
-                <span className="text-brand-red">m</span>
-                <span className="text-brand-blue">e</span>
-                <span className="text-brand-green">destra</span>
-             </div>
+             <img src="./mesestra.png" alt="Medestra Logo" className="h-10 md:h-12 w-auto object-contain" />
           </div>
 
           {/* Desktop Menu */}
@@ -92,29 +88,29 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu Panel */}
-      {isOpen && (
-        <div className="md:hidden bg-white shadow-xl absolute w-full left-0 top-full border-t border-gray-100">
-          <div className="px-4 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col items-start">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="block px-3 py-3 w-full text-start text-base font-medium text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
-            <a 
-              href="#contact"
+      <div 
+        className={`md:hidden bg-white shadow-xl absolute w-full left-0 top-full border-t border-gray-100 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+      >
+        <div className="px-4 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col items-start">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="block px-3 py-3 w-full text-start text-base font-medium text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md"
               onClick={() => setIsOpen(false)}
-              className="mt-4 w-full block text-center bg-brand-blue text-white px-6 py-3 rounded-xl font-bold"
             >
-              {t.nav.book}
+              {item.label}
             </a>
-          </div>
+          ))}
+          <a 
+            href="#contact"
+            onClick={() => setIsOpen(false)}
+            className="mt-4 w-full block text-center bg-brand-blue text-white px-6 py-3 rounded-xl font-bold"
+          >
+            {t.nav.book}
+          </a>
         </div>
-      )}
+      </div>
     </nav>
   );
 };
