@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
   const Arrow = dir === 'rtl' ? ArrowLeft : ArrowRight;
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-b from-blue-50 to-white">
+    <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-b from-blue-50 to-white snap-start">
       {/* Decorative Circles */}
       <div className={`absolute top-20 ${dir === 'rtl' ? 'left-10' : 'right-10'} w-64 h-64 bg-brand-yellow/10 rounded-full blur-3xl`} />
       <div className={`absolute bottom-10 ${dir === 'rtl' ? 'right-10' : 'left-10'} w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl`} />
@@ -66,9 +66,10 @@ const Hero: React.FC = () => {
               <div className="absolute inset-0 flex items-center justify-center z-10">
                  <div className="relative w-64 h-64 md:w-80 md:h-80 bg-white/20 backdrop-blur-sm rounded-full border-4 border-white shadow-2xl flex items-center justify-center overflow-hidden">
                     <div className="text-center p-4">
-                        <span className="text-6xl mb-2 block">🦸‍♂️</span>
+                        <img src="./medestra-circle.png" alt="" />
+                        {/* <span className="text-6xl mb-2 block">🦸‍♂️</span>
                         <p className="text-sm font-bold text-gray-500">{t.hero.mascotText}</p>
-                        <p className="text-xs text-gray-400">(Blue Superhero)</p>
+                        <p className="text-xs text-gray-400">(Blue Superhero)</p> */}
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue via-brand-red to-brand-yellow opacity-20 mix-blend-overlay"></div>
                  </div>

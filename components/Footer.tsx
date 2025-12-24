@@ -6,15 +6,15 @@ const Footer: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-white border-t border-gray-100 pt-16 pb-8">
+    <footer className="min-h-screen snap-start pt-28 pb-16 bg-white border-t border-gray-100 flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-                <span className="text-3xl font-extrabold text-brand-red">m</span>
-                <span className="text-3xl font-extrabold text-brand-blue">e</span>
-                <span className="text-3xl font-extrabold text-brand-green">destra</span>
+            <div className="flex items-center gap-0 mb-6" dir="ltr">
+                <span className="text-3xl font-extrabold  text-brand-red">m</span>
+                <span className="text-3xl font-extrabold  text-brand-blue">e</span>
+                <span className="text-3xl font-extrabold  text-brand-green">destra</span>
             </div>
             <p className="text-gray-500 leading-relaxed max-w-sm">
               {t.footer.description}

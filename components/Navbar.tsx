@@ -9,10 +9,26 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const rootElement = document.getElementById('root');
+      if (rootElement) {
+        setScrolled(rootElement.scrollTop > 20);
+      }
     };
+
+    const rootElement = document.getElementById('root');
+    if (rootElement) {
+        rootElement.addEventListener('scroll', handleScroll);
+    }
+    
+    // Also listen to window scroll just in case layout changes back
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+        if (rootElement) {
+            rootElement.removeEventListener('scroll', handleScroll);
+        }
+        window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const navItems = [
