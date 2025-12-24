@@ -6,7 +6,7 @@ const Services: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="services" className="h-screen overflow-hidden snap-start pt-20 pb-4 md:pt-24 md:pb-4 bg-white flex flex-col justify-center">
+    <section id="services" className="min-h-screen md:h-screen md:overflow-hidden snap-start pt-20 pb-4 md:pt-24 md:pb-4 bg-rose-50 flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-4 md:mb-6">
           <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-1 md:mb-2">{t.services.heading}</h2>

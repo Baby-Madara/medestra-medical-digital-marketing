@@ -6,7 +6,7 @@ const Beneficiaries: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="h-screen overflow-hidden snap-start pt-20 pb-4 md:pt-24 md:pb-8 bg-slate-50 border-t border-slate-100 flex flex-col justify-center">
+    <section className="min-h-screen md:h-screen md:overflow-hidden snap-start pt-20 pb-4 md:pt-24 md:pb-8 bg-emerald-50 border-t border-gray-100 flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-4 md:mb-8">
           <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2 md:mb-4">{t.beneficiaries.heading}</h2>

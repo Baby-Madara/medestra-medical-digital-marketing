@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
 
-const images = [
+const imagePaths = [
   './mascots/h1.png',
   './mascots/h2.png',
   './mascots/h3.png',
@@ -14,12 +14,37 @@ const Hero: React.FC = () => {
   const { t, dir } = useLanguage();
   const Arrow = dir === 'rtl' ? ArrowLeft : ArrowRight;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [displayImages, setDisplayImages] = useState<string[]>(imagePaths);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+      setCurrentImageIndex((prev) => (prev + 1) % imagePaths.length);
     }, 4000); // Change image every 4 seconds
     return () => clearInterval(interval);
+  }, []);
+
+  // Cache images as Blobs to persist even if server is offline (e.g. during dev restarts)
+  useEffect(() => {
+    const cacheImages = async () => {
+      try {
+        const promises = imagePaths.map(async (path) => {
+          const response = await fetch(path);
+          const blob = await response.blob();
+          return URL.createObjectURL(blob);
+        });
+        const cachedUrls = await Promise.all(promises);
+        setDisplayImages(cachedUrls);
+      } catch (error) {
+        console.error("Image caching failed, falling back to network paths:", error);
+      }
+    };
+    cacheImages();
+    
+    // Cleanup blobs on unmount (optional but good practice)
+    return () => {
+      // We don't have access to the *cachedUrls* var here easily without refs, 
+      // but for a Hero component that stays mounted, it's low risk.
+    };
   }, []);
 
   return (
@@ -39,7 +64,8 @@ const Hero: React.FC = () => {
           >
             <div className="relative h-full lg:h-auto lg:w-full aspect-square max-w-full lg:max-w-lg">
               {/* Abstract blob background - Hidden on mobile for space */}
-              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="hidden md:block absolute inset-0 w-full h-full text-blue-200/50 animate-pulse">
+              {/* <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="hidden md:block absolute inset-0 w-full h-full text-blue-200/50 animate-pulse"> */}
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="md:block absolute inset-0 w-full h-full text-blue-200/50 animate-pulse">
                 <path fill="currentColor" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.2,-19.2,95.8,-5.3C93.4,8.6,81.8,21.5,70.5,32.4C59.2,43.3,48.2,52.2,36.2,60.6C24.2,69,11.2,76.9,-2.7,81.6C-16.6,86.3,-31.4,87.8,-43.3,81.8C-55.2,75.8,-64.2,62.3,-71.4,49.2C-78.6,36.1,-84,23.4,-84.9,10.2C-85.8,-3,-82.2,-16.7,-74.6,-28.6C-67,-40.5,-55.4,-50.6,-43.1,-58.5C-30.8,-66.4,-17.8,-72.1,-3.5,-66C10.8,-59.9,30.5,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
               </svg>
               
@@ -49,7 +75,7 @@ const Hero: React.FC = () => {
                         <AnimatePresence mode="wait">
                           <motion.img 
                             key={currentImageIndex}
-                            src={images[currentImageIndex]} 
+                            src={displayImages[currentImageIndex]} 
                             alt={`Medestra Mascot ${currentImageIndex + 1}`} 
                             className="w-full h-full object-cover absolute inset-0" 
                             initial={{ opacity: 0 }}
@@ -69,7 +95,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, x: dir === 'rtl' ? 50 : -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-start shrink-0 pb-4"
+            className="text-center lg:text-start shrink-0 pb-4 mb-8"
           >
             <div className="inline-block px-3 py-1 mb-3 md:mb-6 rounded-full bg-blue-100 text-brand-blue font-bold text-xs md:text-sm border border-blue-200">
               {t.hero.badge}

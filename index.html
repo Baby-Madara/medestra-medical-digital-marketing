@@ -10,6 +10,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="medestra-circle.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+      /* Custom Cursor for Mouse Users */
+      @media (pointer: fine) {
+        body {
+          /* Using SVG Data URI for reliable cursor rendering (Blue 'm') */
+          cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%2300AEEF" stroke="white" stroke-width="2" opacity="0.9"/><text x="16" y="21" font-family="sans-serif" font-weight="bold" font-size="16" fill="white" text-anchor="middle">m</text></svg>') 16 16, auto;
+        }
+        a, button, [role="button"] {
+          /* Link Cursor (Red 'm') */
+          cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23EF4136" stroke="white" stroke-width="2" opacity="0.9"/><text x="16" y="21" font-family="sans-serif" font-weight="bold" font-size="16" fill="white" text-anchor="middle">m</text></svg>') 16 16, pointer;
+        }
+      }
+      
+      /* Ensure native scroll behavior */
+      html, body {
+        overscroll-behavior-y: auto;
+      }
+    </style>
     <script>
       tailwind.config = {
         theme: {
