@@ -1,0 +1,84 @@
+import React from 'react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useLanguage } from '../LanguageContext';
+
+const Hero: React.FC = () => {
+  const { t, dir } = useLanguage();
+  const Arrow = dir === 'rtl' ? ArrowLeft : ArrowRight;
+
+  return (
+    <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-b from-blue-50 to-white">
+      {/* Decorative Circles */}
+      <div className={`absolute top-20 ${dir === 'rtl' ? 'left-10' : 'right-10'} w-64 h-64 bg-brand-yellow/10 rounded-full blur-3xl`} />
+      <div className={`absolute bottom-10 ${dir === 'rtl' ? 'right-10' : 'left-10'} w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl`} />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Text Content */}
+          <motion.div 
+            initial={{ opacity: 0, x: dir === 'rtl' ? 50 : -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center lg:text-start"
+          >
+            <div className="inline-block px-4 py-1.5 mb-6 rounded-full bg-blue-100 text-brand-blue font-bold text-sm border border-blue-200">
+              {t.hero.badge}
+            </div>
+            <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+              {t.hero.titleStart} <span className="text-brand-blue">{t.hero.titleHighlight}</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              {t.hero.description}
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a 
+                href="#contact"
+                className="group bg-brand-red text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-red-600 hover:shadow-brand-red/30 transition-all flex items-center justify-center gap-2"
+              >
+                {t.hero.quoteBtn}
+                <Arrow className={`w-5 h-5 transition-transform ${dir === 'rtl' ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
+              </a>
+              <a 
+                href="#services"
+                className="bg-white text-gray-700 border-2 border-gray-100 px-8 py-4 rounded-full font-bold text-lg hover:border-brand-blue hover:text-brand-blue transition-all shadow-sm"
+              >
+                {t.hero.servicesBtn}
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Image/Mascot Area */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className={`relative flex justify-center ${dir === 'rtl' ? 'lg:justify-end' : 'lg:justify-start'}`}
+          >
+            <div className="relative w-full max-w-lg aspect-square">
+              {/* Abstract blob background */}
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full text-blue-200/50 animate-pulse">
+                <path fill="currentColor" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.2,-19.2,95.8,-5.3C93.4,8.6,81.8,21.5,70.5,32.4C59.2,43.3,48.2,52.2,36.2,60.6C24.2,69,11.2,76.9,-2.7,81.6C-16.6,86.3,-31.4,87.8,-43.3,81.8C-55.2,75.8,-64.2,62.3,-71.4,49.2C-78.6,36.1,-84,23.4,-84.9,10.2C-85.8,-3,-82.2,-16.7,-74.6,-28.6C-67,-40.5,-55.4,-50.6,-43.1,-58.5C-30.8,-66.4,-17.8,-72.1,-3.5,-66C10.8,-59.9,30.5,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
+              </svg>
+              
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                 <div className="relative w-64 h-64 md:w-80 md:h-80 bg-white/20 backdrop-blur-sm rounded-full border-4 border-white shadow-2xl flex items-center justify-center overflow-hidden">
+                    <div className="text-center p-4">
+                        <span className="text-6xl mb-2 block">🦸‍♂️</span>
+                        <p className="text-sm font-bold text-gray-500">{t.hero.mascotText}</p>
+                        <p className="text-xs text-gray-400">(Blue Superhero)</p>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue via-brand-red to-brand-yellow opacity-20 mix-blend-overlay"></div>
+                 </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
