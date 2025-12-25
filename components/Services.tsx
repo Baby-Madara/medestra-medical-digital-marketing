@@ -16,7 +16,7 @@ const Services: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4">
           {t.services.items.map((service, index) => (
             <motion.div
               key={service.id}
@@ -24,7 +24,7 @@ const Services: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="bg-slate-50 rounded-xl md:rounded-2xl p-2 md:p-4 hover:shadow-xl hover:shadow-blue-100 transition-all duration-300 hover:-translate-y-1 group border border-gray-100 flex flex-row md:flex-col items-center md:items-start gap-3 md:gap-4 h-full"
+              className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)] md:min-h-[14rem] bg-slate-50 rounded-xl md:rounded-2xl p-2 md:p-4 hover:shadow-xl hover:shadow-blue-100 transition-all duration-300 hover:-translate-y-1 group border border-gray-100 flex flex-row md:flex-col items-center md:items-start gap-3 md:gap-4 h-full"
             >
               <div className={`w-10 h-10 md:w-14 md:h-14 shrink-0 rounded-lg md:rounded-xl flex items-center justify-center bg-white shadow-sm group-hover:scale-105 transition-transform duration-300 md:mb-4`}>
                 <service.icon className={`w-5 h-5 md:w-7 md:h-7 ${service.color}`} />

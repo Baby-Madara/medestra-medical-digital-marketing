@@ -1,4 +1,4 @@
-import { Share2, ShoppingCart, Headset, PenTool, Building2, Pill, Sparkles, Baby, Stethoscope, Store, TestTube } from 'lucide-react';
+import { Share2, ShoppingCart, Headset, PenTool, Building2, Pill, Sparkles, Baby, Stethoscope, Store, TestTube, Smartphone } from 'lucide-react';
 
 export const translations = {
   ar: {
@@ -49,6 +49,13 @@ export const translations = {
           description: 'كتابة محتوى طبي موثوق وجذاب يعزز من مكانتك كخبير في مجالك الطبي.',
           icon: PenTool,
           color: 'text-brand-green'
+        },
+        {
+          id: 'web-mobile',
+          title: 'انشاء المواقع وتطبيقات الجوال',
+          description: 'تطوير مواقع إلكترونية وتطبيقات جوال طبية احترافية تضمن تجربة مستخدم مميزة وسهولة في الحجز.',
+          icon: Smartphone,
+          color: 'text-purple-600'
         }
       ]
     },
@@ -158,6 +165,13 @@ export const translations = {
           description: 'Writing reliable and engaging medical content that reinforces your position as an expert in your medical field.',
           icon: PenTool,
           color: 'text-brand-green'
+        },
+        {
+          id: 'web-mobile',
+          title: 'Web & Mobile App Development',
+          description: 'Development of professional medical websites and mobile apps ensuring distinctive user experience and easy booking.',
+          icon: Smartphone,
+          color: 'text-purple-600'
         }
       ]
     },
