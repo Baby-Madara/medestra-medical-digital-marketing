@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="hero" className="relative h-screen flex items-center pt-16 md:pt-20 overflow-hidden bg-gradient-to-b from-blue-50 to-white snap-start">
+    <section id="hero" className="relative h-screen flex items-center pt-16 md:pt-20 overflow-hidden bg-gradient-to-b from-blue-50 to-white">
       {/* Decorative Circles */}
       <div className={`absolute top-20 ${dir === 'rtl' ? 'left-10' : 'right-10'} w-64 h-64 bg-brand-yellow/10 rounded-full blur-3xl`} />
       <div className={`absolute bottom-10 ${dir === 'rtl' ? 'right-10' : 'left-10'} w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl`} />
@@ -71,13 +71,13 @@ const Hero: React.FC = () => {
               
               <div className="absolute inset-0 flex items-center justify-center z-10 text-center">
                  <div className="relative w-full h-full bg-white/20 backdrop-blur-sm rounded-full border-2 md:border-4 border-white shadow-xl flex items-center justify-center overflow-hidden">
-                    <div className="text-center w-full h-full relative">
+                    <div className="text-center w-full h-full relative flex items-center justify-center">
                         <AnimatePresence mode="wait">
                           <motion.img 
                             key={currentImageIndex}
                             src={displayImages[currentImageIndex]} 
                             alt={`Medestra Mascot ${currentImageIndex + 1}`} 
-                            className="w-full h-full object-cover absolute inset-0" 
+                            className="w-[80%] h-[80%] object-contain absolute inset-0 m-auto" 
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}

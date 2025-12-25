@@ -5,15 +5,18 @@ import { useLanguage } from '../LanguageContext';
 const Markets: React.FC = () => {
   const { t } = useLanguage();
 
+  // Previous: className="h-screen md:overflow-hidden snap-start pt-20 md:pt-24 pb-0 bg-brand-dark text-white relative flex flex-col justify-center"
   return (
-    <section id="markets" className="min-h-screen md:h-screen md:overflow-hidden snap-start pt-20 md:pt-24 pb-0 bg-amber-50 text-gray-900 relative flex flex-col justify-center">
+    <section id="markets" className="min-h-screen pt-20 md:pt-24 pb-0 bg-brand-dark text-white relative flex flex-col justify-center">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(#000000 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+      {/* Previous Pattern: opacity-5 radial-gradient(#000000 ...) */}
+      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 bg-brand-blue/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-brand-blue mb-3 md:mb-6">
+            {/* Previous Badge: bg-brand-blue/10 */}
+            <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-brand-blue mb-3 md:mb-6">
               <Globe className="w-4 h-4 md:w-5 md:h-5" />
               <span className="font-bold text-sm md:text-base">{t.markets.badge}</span>
             </div>
@@ -21,7 +24,8 @@ const Markets: React.FC = () => {
               {t.markets.title}<br />
               <span className="text-brand-blue">{t.markets.subtitle}</span>
             </h2>
-            <p className="text-gray-600 text-base md:text-lg mb-4 md:mb-8 leading-relaxed max-w-lg">
+            {/* Previous Desc: text-gray-600 */}
+            <p className="text-gray-300 text-base md:text-lg mb-4 md:mb-8 leading-relaxed max-w-lg">
               {t.markets.description}
             </p>
             
@@ -37,9 +41,10 @@ const Markets: React.FC = () => {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-4">
             {t.markets.stats.map((stat, idx) => (
-              <div key={idx} className="bg-white/60 backdrop-blur-sm border border-amber-200/50 rounded-xl md:rounded-2xl p-3 md:p-6 text-center hover:bg-white transition-colors shadow-sm">
+              /* Previous Stat Card: bg-white/60 ... text-gray-600 */
+              <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 text-center hover:bg-white/10 transition-colors">
                 <div className="text-2xl md:text-4xl font-extrabold text-brand-blue mb-1 md:mb-2" dir="ltr">{stat.value}</div>
-                <div className="text-gray-600 font-medium text-xs md:text-base">{stat.label}</div>
+                <div className="text-gray-400 font-medium text-xs md:text-base">{stat.label}</div>
               </div>
             ))}
           </div>

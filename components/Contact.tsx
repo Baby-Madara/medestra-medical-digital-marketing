@@ -25,7 +25,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen md:h-screen md:overflow-hidden snap-start pt-20 pb-0 md:pt-24 md:pb-4 bg-blue-50 flex flex-col justify-center">
+    <section id="contact" className="min-h-screen pt-20 pb-0 md:pt-24 md:pb-4 bg-blue-50 flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-center">
         
         {/* Mobile Icon Banner */}
