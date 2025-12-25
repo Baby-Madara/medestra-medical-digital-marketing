@@ -29,13 +29,18 @@ const Contact: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-center">
         
         {/* Mobile Icon Banner */}
-        <div className="lg:hidden flex justify-between items-center bg-brand-blue text-white p-4 rounded-t-2xl shadow-lg mb-0 z-10 shrink-0">
+        <div className="lg:hidden flex-col justify-between items-center bg-brand-blue text-white p-4 rounded-t-2xl shadow-lg mb-0 z-10 shrink-0">
+           <div className="lg:hidden flex justify-between items-center ">
            <div className="font-bold text-lg">{t.contact.heading}</div>
            <div className="flex gap-3">
               <a href="https://wa.me/201118080265" target="_blank" className="bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors"><Phone className="w-5 h-5"/></a>
               <a href="mailto:marketing@medestra.me" className="bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors"><Mail className="w-5 h-5"/></a>
               <a href="https://www.google.com/maps" target="_blank" className="bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors"><MapPin className="w-5 h-5"/></a>
            </div>
+           </div>
+           <p className="text-blue-100 mb-2 mt-2 text">
+              {t.contact.subheading}
+            </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 bg-white rounded-b-2xl lg:rounded-3xl shadow-xl overflow-hidden h-auto lg:h-auto shrink flex-1 lg:flex-none">
