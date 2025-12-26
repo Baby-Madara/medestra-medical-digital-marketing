@@ -13,6 +13,9 @@
     <style>
       /* Custom Cursor for Mouse Users */
       @media (pointer: fine) {
+        html * {
+          cursor: none; /* The * ensures it applies to all elements within the html */
+        }
         body {
           /* Using SVG Data URI for reliable cursor rendering (Blue 'm') */
           cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%2300AEEF" stroke="white" stroke-width="2" opacity="0.9"/><text x="16" y="21" font-family="sans-serif" font-weight="bold" font-size="16" fill="white" text-anchor="middle">m</text></svg>') 16 16, auto;

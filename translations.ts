@@ -83,7 +83,7 @@ export const translations = {
         'إدارة حملات إعلانية تناسب المواسم الطبية في البلدين'
       ],
       stats: [
-        { value: '+٢٠٠', label: 'عميل طبي' },
+        { value: '+٢٠', label: 'عميل طبي' },
         { value: '٢ دولة', label: 'مصر والسعودية' },
         { value: '%٩٨', label: 'نسبة رضا العملاء' },
       ]
@@ -199,7 +199,7 @@ export const translations = {
         'Managing ad campaigns that fit medical seasons in both countries'
       ],
       stats: [
-        { value: '+200', label: 'Medical Clients' },
+        { value: '+20', label: 'Medical Clients' },
         { value: '2 Countries', label: 'Egypt & KSA' },
         { value: '98%', label: 'Client Satisfaction' },
       ]

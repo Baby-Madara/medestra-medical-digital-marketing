@@ -44,6 +44,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+             {/* Using placeholder until real logo is available */}
              <img src="./mesestra.png" alt="Medestra Logo" className="h-10 md:h-12 w-auto object-contain" />
           </div>
 

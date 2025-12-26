@@ -56,13 +56,15 @@ const Hero: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="flex flex-col lg:grid lg:grid-cols-2 h-[calc(100vh-100px)] lg:h-auto gap-4 lg:gap-6 items-center justify-between">
           {/* Image/Mascot Area */}
+          {/* for some reason the circle becomes oval-like on some phones */}
+          {/* solution:             <div className="relative  h-[60%] lg:h-auto lg:w-full aspect-square max-w-full lg:max-w-lg"> */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className={`relative flex-1 w-full flex justify-center items-center min-h-0 p-4 ${dir === 'rtl' ? 'lg:justify-end lg:order-last' : 'lg:justify-start lg:order-first'} order-first`}
           >
-            <div className="relative h-full lg:h-auto lg:w-full aspect-square max-w-full lg:max-w-lg">
+            <div className="relative  h-[90%] lg:h-auto lg:w-full aspect-square max-w-full lg:max-w-lg">
               {/* Abstract blob background - Hidden on mobile for space */}
               {/* <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="hidden md:block absolute inset-0 w-full h-full text-blue-200/50 animate-pulse"> */}
               <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="md:block absolute inset-0 w-full h-full text-blue-200/50 animate-pulse">
@@ -78,9 +80,9 @@ const Hero: React.FC = () => {
                             src={displayImages[currentImageIndex]} 
                             alt={`Medestra Mascot ${currentImageIndex + 1}`} 
                             className="w-[80%] h-[80%] object-contain absolute inset-0 m-auto" 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.5 }}
                           />
                         </AnimatePresence>

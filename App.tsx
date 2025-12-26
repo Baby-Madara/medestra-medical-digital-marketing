@@ -6,6 +6,8 @@ import Beneficiaries from './components/Beneficiaries';
 import Markets from './components/Markets';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
+import CustomCursor from './components/CustomCursor';
 import { LanguageProvider } from './LanguageContext';
 
 const App: React.FC = () => {
@@ -21,6 +23,8 @@ const App: React.FC = () => {
           <Contact />
         </main>
         <Footer />
+        <WhatsAppButton />
+        <CustomCursor />
       </div>
     </LanguageProvider>
   );
