@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className={`relative flex-1 w-full flex justify-center items-center min-h-0 p-4 ${dir === 'rtl' ? 'lg:justify-end lg:order-last' : 'lg:justify-start lg:order-first'} order-first`}
           >
-            <div className="relative  h-[90%] lg:h-auto lg:w-full aspect-square max-w-full lg:max-w-lg">
+            <div className="relative  h-[80%] lg:h-auto lg:w-full aspect-square max-w-full lg:max-w-lg">
               {/* Abstract blob background - Hidden on mobile for space */}
               {/* <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="hidden md:block absolute inset-0 w-full h-full text-blue-200/50 animate-pulse"> */}
               <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="md:block absolute inset-0 w-full h-full text-blue-200/50 animate-pulse">
