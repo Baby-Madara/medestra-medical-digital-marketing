@@ -1,32 +1,22 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Beneficiaries from './components/Beneficiaries';
-import Markets from './components/Markets';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton';
-import CustomCursor from './components/CustomCursor';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import MetaAdsPage from './MetaAdsPage';
 import { LanguageProvider } from './LanguageContext';
+import CustomCursor from './components/CustomCursor';
 
 const App: React.FC = () => {
   return (
-    <LanguageProvider>
-      <div className="min-h-screen bg-white">
-        <Navbar />
-        <main>
-          <Hero />
-          <Services />
-          <Beneficiaries />
-          <Markets />
-          <Contact />
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <CustomCursor />
-      </div>
-    </LanguageProvider>
+    <HashRouter>
+      <CustomCursor />
+
+      <LanguageProvider>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/meta-ads-master" element={<MetaAdsPage />} />
+        </Routes>
+      </LanguageProvider>
+    </HashRouter>
   );
 };
 

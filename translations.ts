@@ -8,6 +8,8 @@ export const translations = {
       markets: 'تواجدنا',
       contact: 'تواصل معنا',
       book: 'احجز استشارتك',
+      eservice: 'المحتوى التعليمي',
+      metaAdsMaster: 'دورة إتقان إعلانات ميتا',
     },
     hero: {
       badge: 'الشريك رقم 1 للتسويق في مصر والسعودية',
@@ -124,6 +126,8 @@ export const translations = {
       markets: 'Presence',
       contact: 'Contact Us',
       book: 'Book Consultation',
+      eservice: 'Educational Content',
+      metaAdsMaster: 'Meta Ads Master Class',
     },
     hero: {
       badge: '#1 Marketing Partner in Egypt & KSA',

@@ -111,14 +111,14 @@ const Hero: React.FC = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a 
-                href="#contact"
+                onClick={(e) => document.getElementById("contact").scrollIntoView({ behavior: 'smooth' })}
                 className="group bg-brand-red text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-red-600 hover:shadow-brand-red/30 transition-all flex items-center justify-center gap-2"
               >
                 {t.hero.quoteBtn}
                 <Arrow className={`w-5 h-5 transition-transform ${dir === 'rtl' ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
               </a>
               <a 
-                href="#services"
+                onClick={(e) => document.getElementById("services").scrollIntoView({ behavior: 'smooth' })}
                 className="bg-white text-gray-700 border-2 border-gray-100 px-8 py-4 rounded-full font-bold text-lg hover:border-brand-blue hover:text-brand-blue transition-all shadow-sm"
               >
                 {t.hero.servicesBtn}

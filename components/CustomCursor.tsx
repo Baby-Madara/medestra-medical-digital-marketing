@@ -44,7 +44,8 @@ const CustomCursor: React.FC = () => {
       className="fixed top-0 left-0 w-10 h-10 z-[9999] pointer-events-none hidden md:block"
       style={{
         // Using lh3.googleusercontent.com/d/ID usually bypasses the view/export redirect issues for images
-        backgroundImage: `url('https://lh3.googleusercontent.com/d/1Bi96pcjtaB_VZZf-k1ZoMHMYfHNsYEqK')`,
+        backgroundImage: `url('mascots/h3.png')`,
+        // backgroundImage: `url('https://lh3.googleusercontent.com/d/1Bi96pcjtaB_VZZf-k1ZoMHMYfHNsYEqK')`,
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
