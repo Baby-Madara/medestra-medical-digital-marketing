@@ -8,7 +8,9 @@ const MetaAdsManagerPage = () => {
     const [activeTool, setActiveTool] = useState('Campaigns');
 
     return (
-        <div className="flex min-h-screen bg-gray-50 font-sans text-gray-900">
+        // Enforcing LTR direction for the Simulator regardless of the app's language.
+        // If you want to support RTL in the future, remove the dir="ltr" attribute below.
+        <div className="flex min-h-screen bg-gray-50 font-sans text-gray-900" dir="ltr">
             <Sidebar activeTool={activeTool} setActiveTool={setActiveTool} />
 
             <div className="flex-1 ml-[60px] flex flex-col min-w-0">
