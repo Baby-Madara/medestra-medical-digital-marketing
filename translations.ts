@@ -10,6 +10,7 @@ export const translations = {
       book: 'احجز استشارتك',
       eservice: 'المحتوى التعليمي',
       metaAdsMaster: 'دورة إتقان إعلانات ميتا',
+      metaAdsManager: 'محاكي مدير الإعلانات',
     },
     hero: {
       badge: 'الشريك رقم 1 للتسويق في مصر والسعودية',
@@ -128,6 +129,7 @@ export const translations = {
       book: 'Book Consultation',
       eservice: 'Educational Content',
       metaAdsMaster: 'Meta Ads Master Class',
+      metaAdsManager: 'Ads Manager Simulator',
     },
     hero: {
       badge: '#1 Marketing Partner in Egypt & KSA',
