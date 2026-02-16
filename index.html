@@ -1,100 +1,178 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0ea5e9" />
-    <title>Medestra | ميديسترا للتسويق الطبي</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="medestra-circle.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
-    <style>
-      /* Custom Cursor for Mouse Users */
-      @media (pointer: fine) {
-        html * {
-          cursor: none; /* The * ensures it applies to all elements within the html */
-        }
-        /* body selector removed as it was empty */
-        a, button, [role="button"] {
-          /* Link Cursor (Red 'm') */
-          /* cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23EF4136" stroke="white" stroke-width="2" opacity="0.9"/><text x="16" y="21" font-family="sans-serif" font-weight="bold" font-size="16" fill="white" text-anchor="middle">m</text></svg>') 16 16, pointer; */
-          cursor: none;
-        }
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <title>Medestra | ميديسترا للتسويق الطبي</title>
+  <!-- <title>Medestra | ميديسترا للتسويق الطبي - شريكك في النجاح الرقمي</title> -->
+  <meta name="description"
+    content="ميديسترا (Medestra) هي وكالة تسويق رقمي متخصصة في المجال الطبي. نقدم حلولاً متكاملة للأطباء والمراكز الطبية لزيادة الوصول للمرضى وبناء الهوية الرقمية." />
+  <meta name="keywords"
+    content="تسويق طبي, تسويق عيادات, إدارة صفحات تواصل اجتماعي, إعلانات ممولة, تصميم مواقع طبية, ميديسترا, Medestra, تسويق رقمي للأطباء" />
+  <link rel="canonical" href="https://medestra.me/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://medestra.me/" />
+  <meta property="og:title" content="Medestra | ميديسترا للتسويق الطبي" />
+  <meta property="og:description"
+    content="شريكك الاستراتيجي في التسويق الطبي الرقمي. نساعدك في الوصول لجمهورك المستهدف وبناء علامة تجارية قوية." />
+  <meta property="og:image" content="https://medestra.me/og-image.jpg" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://medestra.me/" />
+  <meta property="twitter:title" content="Medestra | ميديسترا للتسويق الطبي" />
+  <meta property="twitter:description"
+    content="شريكك الاستراتيجي في التسويق الطبي الرقمي. نساعدك في الوصول لجمهورك المستهدف وبناء علامة تجارية قوية." />
+  <meta property="twitter:image" content="https://medestra.me/og-image.jpg" />
+
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Medestra Medical Marketing",
+        "image": "https://medestra.me/medestra-circle.png",
+        "url": "https://medestra.me/",
+        "telephone": "",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "",
+          "addressLocality": "Cairo",
+          "addressRegion": "Cairo",
+          "postalCode": "",
+          "addressCountry": "EG"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 30.0444,
+          "longitude": 31.2357
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+          ],
+          "opens": "00:00",
+          "closes": "23:59"
+        },
+        "sameAs": [
+          
+          "https://www.instagram.com/medestra.me",
+          "https://www.linkedin.com/company/marketingmedestra"
+        ]
       }
-      
-      /* Ensure native scroll behavior */
-      /* Ensure native scroll behavior */
-      html, body {
-        /* scroll-snap-type: y mandatory; */
-        overscroll-behavior-y: auto;
+    </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="medestra-circle.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Great+Vibes&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Custom Cursor for Mouse Users */
+    @media (pointer: fine) {
+      html * {
+        cursor: none;
+        /* The * ensures it applies to all elements within the html */
       }
-    </style>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Tajawal', 'sans-serif'],
-              script: ['"Great Vibes"', 'cursive'],
+
+      /* body selector removed as it was empty */
+      a,
+      button,
+      [role="button"] {
+        /* Link Cursor (Red 'm') */
+        /* cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23EF4136" stroke="white" stroke-width="2" opacity="0.9"/><text x="16" y="21" font-family="sans-serif" font-weight="bold" font-size="16" fill="white" text-anchor="middle">m</text></svg>') 16 16, pointer; */
+        cursor: none;
+      }
+    }
+
+    /* Ensure native scroll behavior */
+    /* Ensure native scroll behavior */
+    html,
+    body {
+      /* scroll-snap-type: y mandatory; */
+      overscroll-behavior-y: auto;
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Tajawal', 'sans-serif'],
+            script: ['"Great Vibes"', 'cursive'],
+          },
+          colors: {
+            brand: {
+              blue: '#00AEEF', // Estimated from Logo
+              red: '#EF4136',  // Estimated from Logo
+              yellow: '#FFD037', // Estimated from Logo
+              green: '#8DC63F', // Estimated from Logo
+              dark: '#1e293b',
             },
-            colors: {
-              brand: {
-                blue: '#00AEEF', // Estimated from Logo
-                red: '#EF4136',  // Estimated from Logo
-                yellow: '#FFD037', // Estimated from Logo
-                green: '#8DC63F', // Estimated from Logo
-                dark: '#1e293b',
-              },
-              meta: {
-                blue: '#0668E1',
-                hover: '#005bb5',
-                light: '#EBF5FF',
-                dark: '#1C2B33',
-                surface: '#F8FAFC',
-                gold: '#D4AF37',
-              }
+            meta: {
+              blue: '#0668E1',
+              hover: '#005bb5',
+              light: '#EBF5FF',
+              dark: '#1C2B33',
+              surface: '#F8FAFC',
+              gold: '#D4AF37',
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out forwards',
+            'slide-up': 'slideUp 0.5s ease-out forwards',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'bounce-in': 'bounceIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
             },
-            animation: {
-              'fade-in': 'fadeIn 0.5s ease-out forwards',
-              'slide-up': 'slideUp 0.5s ease-out forwards',
-              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'bounce-in': 'bounceIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards'
+            slideUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
             },
-            keyframes: {
-              fadeIn: {
-                '0%': { opacity: '0', transform: 'translateY(10px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              slideUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              bounceIn: {
-                '0%': { opacity: '0', transform: 'scale(0.9)' },
-                '50%': { opacity: '1', transform: 'scale(1.05)' },
-                '100%': { transform: 'scale(1)' },
-              }
+            bounceIn: {
+              '0%': { opacity: '0', transform: 'scale(0.9)' },
+              '50%': { opacity: '1', transform: 'scale(1.05)' },
+              '100%': { transform: 'scale(1)' },
             }
           }
         }
       }
-    </script>
-    <style>
-      /* Smooth scrolling */
-      html, body { 
-        margin: 0; 
-        padding: 0; 
-        scroll-behavior: smooth;
-      }
-      #root {
-        min-height: 100vh;
-      }
-      body { font-family: 'Tajawal', sans-serif; }
-    </style>
+    }
+  </script>
+  <style>
+    /* Smooth scrolling */
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
 
-<!-- <link rel="stylesheet" href="/index.css"> -->
+    #root {
+      min-height: 100vh;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+    }
+  </style>
+
+  <!-- <link rel="stylesheet" href="/index.css"> -->
   <script type="importmap">
 {
   "imports": {
@@ -108,7 +186,9 @@
 </script>
   <script type="module" crossorigin src="/assets/index-Dk80gqnX.js"></script>
 </head>
-  <body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
-    <div id="root"></div>
+
+<body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
+  <div id="root"></div>
 </body>
+
 </html>
