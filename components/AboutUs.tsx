@@ -35,7 +35,7 @@ const AboutUs: React.FC = () => {
   return (
     <section
       id="aboutUs"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
@@ -84,7 +84,7 @@ const AboutUs: React.FC = () => {
               {/* Center Member (Dr. Mahmoud Hussein) - Always Center */}
               <div className="flex flex-col items-center w-full md:order-2 order-1">
                 <div className="relative mb-6 w-full flex justify-center">
-                  <div style={{...gradientBorderStyle, padding: '4px'}} className="shadow-2xl hover:shadow-2xl transition-shadow duration-300">
+                  <div style={{ ...gradientBorderStyle, padding: '4px' }} className="shadow-2xl hover:shadow-2xl transition-shadow duration-300">
                     <div className="w-56 h-56 rounded-full overflow-hidden bg-white">
                       <img
                         src={teamMembers[0].image}
