@@ -43,6 +43,7 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { label: t.nav.home, id: 'hero', href: '/#hero' },
+    { label: t.nav.aboutUs, id: 'aboutUs', href: '/#aboutUs' },
     { label: t.nav.services, id: 'services', href: '/#services' },
     { label: t.nav.markets, id: 'markets', href: '/#markets' },
     { label: t.nav.contact, id: 'contact', href: '/#contact' },

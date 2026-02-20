@@ -1,9 +1,33 @@
 import React from 'react';
 import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const { t, dir } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+
+    // Check if we are on the landing page
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Allow time for navigation to happen before scrolling
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <footer className="min-h-screen pt-20 pb-4 md:pt-24 md:pb-8 bg-white border-t border-gray-100 flex flex-col justify-center">
@@ -26,10 +50,11 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold text-gray-900 mb-3 md:mb-6">{t.footer.quickLinks}</h4>
             <ul className="space-y-2 md:space-y-3 text-sm md:text-base">
-              <li><a href="#hero" className="text-gray-600 hover:text-brand-blue transition-colors">{t.nav.home}</a></li>
-              <li><a href="#services" className="text-gray-600 hover:text-brand-blue transition-colors">{t.nav.services}</a></li>
-              <li><a href="#markets" className="text-gray-600 hover:text-brand-blue transition-colors">{t.nav.markets}</a></li>
-              <li><a href="#contact" className="text-gray-600 hover:text-brand-blue transition-colors">{t.nav.contact}</a></li>
+              <li><a href="#hero" onClick={(e) => handleNavigation(e, 'hero')} className="text-gray-600 hover:text-brand-blue transition-colors">{t.nav.home}</a></li>
+              <li><a href="#aboutUs" onClick={(e) => handleNavigation(e, 'aboutUs')} className="text-gray-600 hover:text-brand-blue transition-colors">{t.nav.aboutUs}</a></li>
+              <li><a href="#services" onClick={(e) => handleNavigation(e, 'services')} className="text-gray-600 hover:text-brand-blue transition-colors">{t.nav.services}</a></li>
+              <li><a href="#markets" onClick={(e) => handleNavigation(e, 'markets')} className="text-gray-600 hover:text-brand-blue transition-colors">{t.nav.markets}</a></li>
+              <li><a href="#contact" onClick={(e) => handleNavigation(e, 'contact')} className="text-gray-600 hover:text-brand-blue transition-colors">{t.nav.contact}</a></li>
             </ul>
           </div>
 

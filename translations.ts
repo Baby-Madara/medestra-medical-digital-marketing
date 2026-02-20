@@ -1,9 +1,10 @@
-import { Share2, ShoppingCart, Headset, PenTool, Building2, Pill, Sparkles, Baby, Stethoscope, Store, TestTube, Smartphone } from 'lucide-react';
+import { Share2, ShoppingCart, Headset, PenTool, Building2, Pill, Sparkles, Baby, Stethoscope, Store, TestTube, Smartphone, Users } from 'lucide-react';
 
 export const translations = {
   ar: {
     nav: {
       home: 'الرئيسية',
+      aboutUs: 'من نحن',
       services: 'خدماتنا',
       markets: 'تواجدنا',
       contact: 'تواصل معنا',
@@ -11,6 +12,27 @@ export const translations = {
       eservice: 'المحتوى التعليمي',
       metaAdsMaster: 'دورة إتقان إعلانات ميتا',
       metaAdsManager: 'محاكي مدير الإعلانات',
+    },
+    aboutUs: {
+      heading: 'من نحن',
+      description: 'ميديسترا هي وكالة تسويق رقمي طبية رائدة، متخصصة في تقديم حلول مبتكرة لقطاع الرعاية الصحية في مصر والمملكة العربية السعودية. نجمع بين الخبرة الطبية والفهم العميق للتسويق الرقمي لتمكين الأطباء والمراكز الطبية من الوصول إلى جمهورهم المستهدف بفعالية. هدفنا هو تحويل التواجد الرقمي إلى نتائج ملموسة ونمو مستدام لشركائنا في النجاح.',
+      team: 'المؤسسون',
+      founder: {
+        name: 'د. محمود حسين',
+        title: 'المؤسس والرئيس التنفيذي',
+      },
+      cofounder1: {
+        name: 'د. أميمة علي',
+        title: 'الشريك المؤسس ومدير قسم إدارة علاقات العملاء (CRM)',
+      },
+      cofounder2: {
+        name: 'د. خلود خالد',
+        title: 'الشريك المؤسس ومدير قسم المحتوى والتخطيط',
+      },
+      mission: 'رسالتنا',
+      missionDescription: 'تمكين الأطباء والمؤسسات الطبية لتحقيق نمو مستدام من خلال حلول تسويقية مبتكرة وأخلاقية تجمع بين الدقة الطبية والإبداع الرقمي، مساهمة في تحسين تجارب العملاء ورفع الوعي الصحي.',
+      vision: 'رؤيتنا',
+      visionDescription: 'أن نكون الشريك الأول والأكثر ثقة في التحول الرقمي لقطاع الرعاية الصحية في الشرق الأوسط، محدثين الطريقة التي يتواصل بها مقدمو الخدمات الصحية مع عملائهم.',
     },
     hero: {
       badge: 'الشريك رقم 1 للتسويق في مصر والسعودية',
@@ -59,6 +81,13 @@ export const translations = {
           description: 'تطوير مواقع إلكترونية وتطبيقات جوال طبية احترافية تضمن تجربة مستخدم مميزة وسهولة في الحجز.',
           icon: Smartphone,
           color: 'text-purple-600'
+        },
+        {
+          id: 'training',
+          title: 'تدريب فرق التسويق',
+          description: 'برامج تدريبية متخصصة لتطوير مهارات فرق التسويق الداخلي لديكم ومواكبة أحدث استراتيجيات التسويق الطبي.',
+          icon: Users,
+          color: 'text-brand-blue'
         }
       ]
     },
@@ -123,6 +152,7 @@ export const translations = {
   en: {
     nav: {
       home: 'Home',
+      aboutUs: 'About Us',
       services: 'Services',
       markets: 'Presence',
       contact: 'Contact Us',
@@ -130,6 +160,27 @@ export const translations = {
       eservice: 'Educational Content',
       metaAdsMaster: 'Meta Ads Master Class',
       metaAdsManager: 'Ads Manager Simulator',
+    },
+    aboutUs: {
+      heading: 'About Us',
+      description: 'Medestra is a leading medical digital marketing agency specialized in providing innovative solutions for the healthcare sector in Egypt and Saudi Arabia. We combine medical expertise with deep understanding of digital marketing to empower doctors and medical centers to reach their target audience effectively. Our goal is to transform digital presence into tangible results and sustainable growth for our success partners.',
+      team: 'Founders',
+      founder: {
+        name: 'Dr. Mahmoud Hussein',
+        title: 'Founder and Chief Executive Officer',
+      },
+      cofounder1: {
+        name: 'Dr. Omaima Ali',
+        title: 'Co-founder and Customer Relationship Management department (CRM) Manager',
+      },
+      cofounder2: {
+        name: 'Dr. Khloud Khaled',
+        title: 'Co-founder and Content and Planning Department Manager',
+      },
+      mission: 'Our Mission',
+      missionDescription: 'To empower doctors and medical institutions to achieve sustainable growth through innovative and ethical marketing solutions that combine medical precision with digital creativity, contributing to improved client experiences and raised health awareness.',
+      vision: 'Our Vision',
+      visionDescription: 'To be the premier and most trusted partner in the digital transformation of the healthcare sector in the Middle East, revolutionizing how healthcare providers connect with their clients',
     },
     hero: {
       badge: '#1 Marketing Partner in Egypt & KSA',
@@ -178,6 +229,13 @@ export const translations = {
           description: 'Development of professional medical websites and mobile apps ensuring distinctive user experience and easy booking.',
           icon: Smartphone,
           color: 'text-purple-600'
+        },
+        {
+          id: 'training',
+          title: 'Marketing Team Training',
+          description: 'Specialized training programs to develop your internal marketing team skills and keep up with the latest medical marketing strategies.',
+          icon: Users,
+          color: 'text-brand-blue'
         }
       ]
     },

@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Hero from './Hero';
+import AboutUs from './AboutUs';
 import Services from './Services';
 import Beneficiaries from './Beneficiaries';
 import Markets from './Markets';
@@ -15,6 +16,7 @@ const LandingPage: React.FC = () => {
       <Navbar />
       <main>
         <Hero />
+        <AboutUs />
         <Services />
         <Beneficiaries />
         <Markets />

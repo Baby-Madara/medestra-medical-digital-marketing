@@ -11,7 +11,8 @@ const CustomCursor: React.FC = () => {
       if (cursorRef.current) {
         // Ensure opacity is 1 whenever mouse moves (fixes issue where it stays hidden on load)
         cursorRef.current.style.opacity = '1'; 
-        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+        // flip horizontally by applying scaleX(-1) so the mascot faces the other direction
+        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) scaleX(-1)`;
       }
     };
 
