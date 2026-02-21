@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Languages, ChevronDown } from 'lucide-react';
+import { Menu, X, Languages, ChevronDown, Volume2, VolumeX } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import { useAudio } from '../AudioContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { t, language, toggleLanguage } = useLanguage();
+  const { isMuted, toggleMute } = useAudio();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -105,10 +107,26 @@ const Navbar: React.FC = () => {
               <Languages size={18} />
               <span className="text-sm font-bold uppercase">{language === 'ar' ? 'English' : 'عربي'}</span>
             </button>
+
+            <button
+              onClick={toggleMute}
+              className={`flex items-center gap-1 px-3 py-1 rounded-full border transition-colors ${scrolled ? 'border-gray-300 text-gray-700 hover:border-brand-blue' : 'border-gray-400 text-gray-800 hover:border-brand-blue'}`}
+              title={isMuted ? 'Unmute audio' : 'Mute audio'}
+            >
+              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+            </button>
           </div>
 
           {/* Mobile Menu Controls */}
           <div className="md:hidden flex items-center gap-4">
+            <button
+              onClick={toggleMute}
+              className="text-gray-700 hover:text-brand-blue focus:outline-none"
+              title={isMuted ? 'Unmute audio' : 'Mute audio'}
+            >
+              {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+            </button>
+
             <button
               onClick={toggleLanguage}
               className="flex items-center gap-1 text-gray-700 font-bold"
