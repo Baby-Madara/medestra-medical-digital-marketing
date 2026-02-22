@@ -77,7 +77,12 @@ const Footer: React.FC = () => {
               >
                 <Instagram className="w-4 h-4 md:w-5 md:h-5" />
               </a>
-              <a href="#" className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-brand-blue hover:text-white transition-all">
+              <a 
+                href="https://www.facebook.com/medestra.me" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-brand-blue hover:text-white transition-all"
+              >
                 <Facebook className="w-4 h-4 md:w-5 md:h-5" />
               </a>
             </div>
