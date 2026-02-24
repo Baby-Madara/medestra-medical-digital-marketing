@@ -1,41 +1,84 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { getAllServices } from '../constants/services';
+import FeatureIcon from './icons/ServiceIcons';
 import { useLanguage } from '../LanguageContext';
 
 const Services: React.FC = () => {
-  const { t } = useLanguage();
+  const langCtx = useLanguage() as any;
+  const language = langCtx?.language || 'ar';
+  const t = langCtx?.t || { services: { heading: 'الخدمات', subheading: 'اكتشف خدماتنا المتخصصة' } };
+  const services = getAllServices();
 
-  // Previous: className="h-screen md:overflow-hidden snap-start pt-20 pb-4 md:pt-24 md:pb-4 bg-white flex flex-col justify-center"
+  const getServiceIcon = (id: string) => {
+    const icons: { [key: string]: string } = {
+      'medical-content': '📝',
+      'customer-service': '📞',
+      'ecommerce': '🛍️',
+      'social-media': '📱',
+      'team-training': '👨‍🏫',
+      'web-mobile': '🌐'
+    };
+    return icons[id] || '⭐';
+  };
+
   return (
     <section id="services" className="min-h-screen pt-20 pb-4 md:pt-24 md:pb-4 bg-white flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-4 md:mb-6">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-1 md:mb-2">{t.services.heading}</h2>
-          <p className="text-sm md:text-lg text-gray-600 max-w-4xl mx-auto">
-            {t.services.subheading}
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            {language === 'ar' ? 'خدماتنا' : 'Our Services'}
+          </h2>
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+            {language === 'ar'
+              ? 'حلول تسويق طبي شاملة مصممة خصيصاً لتنمية ممارستك الطبية'
+              : 'Comprehensive healthcare marketing solutions designed to grow your medical practice'}
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-          {t.services.items.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="w-full md:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)] md:min-h-[14rem] bg-slate-50 rounded-xl md:rounded-2xl p-2 md:p-4 hover:shadow-xl hover:shadow-blue-100 transition-all duration-300 hover:-translate-y-1 group border border-gray-100 flex flex-row md:flex-col items-center md:items-start gap-3 md:gap-4 h-full"
-            >
-              <div className={`w-10 h-10 md:w-14 md:h-14 shrink-0 rounded-lg md:rounded-xl flex items-center justify-center bg-white shadow-sm group-hover:scale-105 transition-transform duration-300 md:mb-4`}>
-                <service.icon className={`w-5 h-5 md:w-7 md:h-7 ${service.color}`} />
-              </div>
-              <div className="flex flex-col items-start text-start">
-                <h3 className="text-base md:text-lg font-bold text-gray-900 mb-0 md:mb-2">{service.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-xs md:text-sm flex-grow">
-                  {service.description}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {services.map((service, index) => (
+            <Link key={service.id} to={`/service/${service.slug}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                className={`h-full rounded-2xl p-8 bg-white/30 backdrop-blur-md border border-white/30 hover:bg-white/40 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer group`}
+              >
+                <div className={`w-16 h-16 rounded-2xl ${service.iconBg} flex items-center justify-center text-4xl mb-6 group-hover:scale-110 transition-transform overflow-hidden`}>
+                  {service.id === 'team-training' ? (
+                    <img 
+                      src={'/photos/Marketing Team Training.png'}
+                      alt={service.title_en}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : ['ecommerce', 'social-media', 'web-mobile', 'customer-service', 'medical-content'].includes(service.id) ? (
+                    <img 
+                      src={service.id === 'medical-content' ? '/photos/CONTENT.png' :
+                           service.id === 'ecommerce' ? '/photos/ecommerce.png' :
+                           service.id === 'social-media' ? '/photos/social media.png' :
+                           service.id === 'web-mobile' ? '/photos/WEB.png' :
+                           '/photos/CRM (2).png'}
+                      alt={service.title_en}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    getServiceIcon(service.id)
+                  )}
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  {language === 'ar' ? service.title_ar : service.title_en}
+                </h3>
+                <p className="text-slate-700 mb-4 leading-relaxed">
+                  {language === 'ar' ? service.shortDesc_ar : service.shortDesc_en}
                 </p>
-              </div>
-            </motion.div>
+                <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: service.primaryColor }}>
+                  {language === 'ar' ? 'تعرف أكثر →' : 'Learn More →'}
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

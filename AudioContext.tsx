@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useLanguage } from './LanguageContext';
 
 interface AudioContextType {
   isMuted: boolean;
@@ -10,17 +11,29 @@ const AudioContext = createContext<AudioContextType | undefined>(undefined);
 export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
+  const { language } = useLanguage();
 
   useEffect(() => {
-    // Create audio element
-    const audio = new Audio('/voice/ElevenLabs_2026-02-20T23_25_19_Hope - upbeat and clear_pvc_sp96_s50_sb75_v3.mp3');
-    audio.loop = true;
-    audio.volume = 0.5; // Set volume to 50%
-    audioRef.current = audio;
+    // Determine audio file based on current language
+    const englishFile = '/voice/ElevenLabs_2026-02-20T23_25_19_Hope - upbeat and clear_pvc_sp96_s50_sb75_v3.mp3';
+    const arabicFile = '/voice/صوت عربي.mp3';
+    const src = language === 'ar' ? arabicFile : englishFile;
 
-    // Try to play audio on first user interaction
+    // Create or reuse audio element
+    let audio = audioRef.current;
+    if (!audio) {
+      audio = new Audio(src);
+      audio.loop = true;
+      audio.volume = 0.5;
+      audioRef.current = audio;
+    } else if (audio.src.indexOf(src) === -1) {
+      audio.src = src;
+      audio.load();
+    }
+
+    // Play on first user interaction (if not muted)
     const playAudio = () => {
-      if (!isMuted) {
+      if (!isMuted && audio) {
         audio.play().catch((error) => {
           console.log('Audio playback failed (browser may require user interaction):', error);
         });
@@ -34,6 +47,11 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     document.addEventListener('keydown', playAudio);
     document.addEventListener('touchstart', playAudio);
 
+    // If language changes while allowed, attempt to play the new audio
+    if (!isMuted) {
+      audio.play().catch(() => {});
+    }
+
     return () => {
       document.removeEventListener('click', playAudio);
       document.removeEventListener('keydown', playAudio);
@@ -42,7 +60,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         audioRef.current.pause();
       }
     };
-  }, []);
+  }, [language]);
 
   const toggleMute = () => {
     setIsMuted((prev) => {
