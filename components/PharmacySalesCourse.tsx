@@ -34,6 +34,7 @@ export default function PharmacySalesCourse() {
     const [showCertificate, setShowCertificate] = useState(false);
     const [userName, setUserName] = useState('');
     const [nameInputOpen, setNameInputOpen] = useState(false);
+    const mainRef = React.useRef<HTMLDivElement>(null);
 
     const [quizAnswers, setQuizAnswers] = useState<Record<string, number>>({});
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -63,15 +64,20 @@ export default function PharmacySalesCourse() {
 
     // Reset quiz state and scroll to top when module changes
     useEffect(() => {
-        if (activeModuleId === 'intro') return;
         setQuizAnswers({});
         setCurrentQuestionIndex(0);
         setShowExplanation(false);
         setQuizCompleted(false);
         setExamStarted(false);
         setTimeLeft(300);
-        window.scrollTo(0, 0); // Scroll to top when activeModuleId changes
-    }, [activeModuleId]);
+
+        // Scroll window for mobile/overall
+        window.scrollTo(0, 0);
+        // Scroll main container for desktop
+        if (mainRef.current) {
+            mainRef.current.scrollTo({ top: 0, behavior: 'instant' });
+        }
+    }, [activeModuleId, view]);
 
     // Timer Logic
     useEffect(() => {
@@ -341,7 +347,7 @@ export default function PharmacySalesCourse() {
                     </motion.aside>
 
                     {/* Main Content */}
-                    <main className="flex-1 flex flex-col h-full relative overflow-y-auto bg-[#F8FAFC]">
+                    <main ref={mainRef} className="flex-1 flex flex-col h-full relative overflow-y-auto bg-[#F8FAFC]">
                         {/* Mobile Header */}
                         <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-200 bg-white sticky top-0 z-20 shadow-sm">
                             <div className="flex items-center gap-2">

@@ -18,8 +18,8 @@ const PharmacySalesCourse = lazy(() => import('./components/PharmacySalesCourse'
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
+  React.useLayoutEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname]);
   return null;
 };

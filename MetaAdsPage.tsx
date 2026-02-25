@@ -136,6 +136,7 @@ const MetaAdsPage = () => {
   const [isLevelComplete, setIsLevelComplete] = useState(false);
   const { language, toggleLanguage } = useLanguage();
   const isAr = language === 'ar';
+  const mainRef = React.useRef<HTMLDivElement>(null);
 
   const COURSE_CONTENT = getCourseContent(language as 'ar' | 'en');
 
@@ -147,6 +148,9 @@ const MetaAdsPage = () => {
   useEffect(() => {
     if (hasStarted) {
       window.scrollTo(0, 0);
+      if (mainRef.current) {
+        mainRef.current.scrollTo({ top: 0, behavior: 'instant' });
+      }
       // If we are revisiting a previous level (one that is lower than our max unlocked level),
       // consider it complete so the user can see the "Next" button without solving again.
       // Otherwise (for new levels), they must solve it.
@@ -419,7 +423,7 @@ const MetaAdsPage = () => {
         )}
 
         {/* Main Content */}
-        <main className="flex-1 p-4 md:p-8 lg:p-12 md:overflow-y-auto relative z-10">
+        <main ref={mainRef} className="flex-1 p-4 md:p-8 lg:p-12 md:overflow-y-auto relative z-10">
           <div className="max-w-4xl mx-auto space-y-8 pb-20">
 
             {/* Progress Header */}
