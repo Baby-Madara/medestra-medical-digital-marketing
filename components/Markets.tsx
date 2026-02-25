@@ -7,10 +7,10 @@ const Markets: React.FC = () => {
 
   // Previous: className="h-screen md:overflow-hidden snap-start pt-20 md:pt-24 pb-0 bg-brand-dark text-white relative flex flex-col justify-center"
   return (
-    <section id="markets" className="min-h-screen pt-20 md:pt-24 pb-0 bg-brand-dark text-white relative flex flex-col justify-center">
+    <section id="markets" className="min-h-screen pt-20 md:pt-24 pb-0 bg-transparent text-slate-900 relative flex flex-col justify-center">
       {/* Background Pattern */}
       {/* Previous Pattern: opacity-5 radial-gradient(#000000 ...) */}
-      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+      <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: 'radial-gradient(#00AEEF 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-center">
@@ -20,15 +20,15 @@ const Markets: React.FC = () => {
               <Globe className="w-4 h-4 md:w-5 md:h-5" />
               <span className="font-bold text-sm md:text-base">{t.markets.badge}</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-3 md:mb-6 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold mb-3 md:mb-6 leading-tight text-slate-900">
               {t.markets.title}<br />
               <span className="text-brand-blue">{t.markets.subtitle}</span>
             </h2>
             {/* Previous Desc: text-gray-600 */}
-            <p className="text-gray-300 text-base md:text-lg mb-4 md:mb-8 leading-relaxed max-w-lg">
+            <p className="text-slate-600 text-base md:text-lg mb-4 md:mb-8 leading-relaxed max-w-lg">
               {t.markets.description}
             </p>
-            
+
             <ul className="space-y-2 md:space-y-4 mb-6 md:mb-8">
               {t.markets.points.map((point, i) => (
                 <li key={i} className="flex items-center gap-2 md:gap-3 text-sm md:text-base">
@@ -42,7 +42,7 @@ const Markets: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 md:gap-4">
             {t.markets.stats.map((stat, idx) => (
               /* Previous Stat Card: bg-white/60 ... text-gray-600 */
-              <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-6 text-center hover:bg-white/10 transition-colors">
+              <div key={idx} className="bg-white/[0.05] backdrop-blur-[40px] border-t-[2.5px] border-l-[2.5px] border-white/90 border-b border-r border-white/5 rounded-[2.5rem] p-4 md:p-8 text-center hover:bg-white/[0.1] transition-all shadow-[0_20px_45px_rgba(0,0,0,0.1),_inset_0_1px_2px_rgba(255,255,255,0.8)] hover:shadow-[0_30px_70px_rgba(0,0,0,0.15),_inset_0_1px_3px_rgba(255,255,255,1)]">
                 <div className="text-2xl md:text-4xl font-extrabold text-brand-blue mb-1 md:mb-2" dir="ltr">{stat.value}</div>
                 <div className="text-gray-400 font-medium text-xs md:text-base">{stat.label}</div>
               </div>

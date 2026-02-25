@@ -25,17 +25,18 @@ const AboutUs: React.FC = () => {
     },
   ];
 
-  // Gradient border style - blended from brand colors with transparency
+  // Premium gradient border style using all 4 brand colors
   const gradientBorderStyle = {
-    background: 'linear-gradient(135deg, rgba(26, 117, 255, 0.6), rgba(239, 68, 68, 0.6), rgba(245, 158, 11, 0.6))',
+    background: 'linear-gradient(135deg, #00AEEF, #EF4136, #FFD037, #8DC63F)',
     borderRadius: '50%',
-    padding: '3px',
+    padding: '5px',
+    boxShadow: '0 8px 32px rgba(0, 174, 239, 0.35)',
   };
 
   return (
     <section
       id="aboutUs"
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
@@ -60,13 +61,13 @@ const AboutUs: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start justify-items-center mb-16">
               {/* Right Member (Dr. Ameema) - Appears on Right on Desktop */}
               <div className="flex flex-col items-center w-full md:order-3 order-2">
-                <div className="relative mb-6 w-full flex justify-center">
-                  <div style={gradientBorderStyle} className="shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                    <div className="w-48 h-48 rounded-full overflow-hidden bg-white">
+                <div className="relative mb-6 w-full flex justify-center group">
+                  <div className="relative p-1.5 bg-white/[0.05] backdrop-blur-[32px] rounded-full border-t-[1.5px] border-l-[1.5px] border-white/80 border-b border-r border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.1),_inset_0_1px_1px_rgba(255,255,255,0.8)] transition-all duration-700 group-hover:shadow-[0_20px_45px_rgba(0,0,0,0.15),_inset_0_1px_2px_rgba(255,255,255,1)]">
+                    <div className="w-48 h-48 rounded-full overflow-hidden bg-transparent border border-white/10">
                       <img
                         src={teamMembers[1].image}
                         alt={teamMembers[1].name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                     </div>
                   </div>
@@ -83,13 +84,13 @@ const AboutUs: React.FC = () => {
 
               {/* Center Member (Dr. Mahmoud Hussein) - Always Center */}
               <div className="flex flex-col items-center w-full md:order-2 order-1">
-                <div className="relative mb-6 w-full flex justify-center">
-                  <div style={{ ...gradientBorderStyle, padding: '4px' }} className="shadow-2xl hover:shadow-2xl transition-shadow duration-300">
-                    <div className="w-56 h-56 rounded-full overflow-hidden bg-white">
+                <div className="relative mb-6 w-full flex justify-center group">
+                  <div className="relative p-2 bg-white/[0.05] backdrop-blur-[40px] rounded-full border-t-[2px] border-l-[2px] border-white/90 border-b border-r border-white/10 shadow-[0_20px_45px_rgba(0,0,0,0.15),_inset_0_1px_2px_rgba(255,255,255,0.9)] transition-all duration-700 group-hover:shadow-[0_30px_60px_rgba(0,0,0,0.2),_inset_0_1px_3px_rgba(255,255,255,1)]">
+                    <div className="w-56 h-56 rounded-full overflow-hidden bg-transparent border border-white/20">
                       <img
                         src={teamMembers[0].image}
                         alt={teamMembers[0].name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                     </div>
                   </div>
@@ -106,13 +107,13 @@ const AboutUs: React.FC = () => {
 
               {/* Left Member (Dr. Khulood Khaled) - Appears on Left on Desktop */}
               <div className="flex flex-col items-center w-full md:order-1 order-3">
-                <div className="relative mb-6 w-full flex justify-center">
-                  <div style={gradientBorderStyle} className="shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                    <div className="w-48 h-48 rounded-full overflow-hidden bg-white">
+                <div className="relative mb-6 w-full flex justify-center group">
+                  <div className="relative p-1.5 bg-white/[0.05] backdrop-blur-[32px] rounded-full border-t-[1.5px] border-l-[1.5px] border-white/80 border-b border-r border-white/10 shadow-[0_15px_35px_rgba(0,0,0,0.1),_inset_0_1px_1px_rgba(255,255,255,0.8)] transition-all duration-700 group-hover:shadow-[0_20px_45px_rgba(0,0,0,0.15),_inset_0_1px_2px_rgba(255,255,255,1)]">
+                    <div className="w-48 h-48 rounded-full overflow-hidden bg-transparent border border-white/10">
                       <img
                         src={teamMembers[2].image}
                         alt={teamMembers[2].name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                     </div>
                   </div>
@@ -133,7 +134,7 @@ const AboutUs: React.FC = () => {
           <div className="mt-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Mission Card - Glass Morphism */}
-              <div className="backdrop-blur-md bg-white/30 border border-white/20 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <div className="backdrop-blur-[40px] bg-white/[0.05] border-t-[2.5px] border-l-[2.5px] border-white/90 border-b border-r border-white/5 rounded-[3rem] p-8 shadow-[0_25px_60px_rgba(0,0,0,0.1),_inset_0_1px_2px_rgba(255,255,255,0.9)] hover:shadow-[0_35px_80px_rgba(0,0,0,0.15),_inset_0_1px_3px_rgba(255,255,255,1)] transition-all duration-700">
                 <h4 className="text-2xl font-bold text-gray-900 mb-4 text-center">
                   {t.aboutUs.mission}
                 </h4>
@@ -143,7 +144,7 @@ const AboutUs: React.FC = () => {
               </div>
 
               {/* Vision Card - Glass Morphism */}
-              <div className="backdrop-blur-md bg-white/30 border border-white/20 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+              <div className="backdrop-blur-[40px] bg-white/[0.05] border-t-[2.5px] border-l-[2.5px] border-white/90 border-b border-r border-white/5 rounded-[3rem] p-8 shadow-[0_25px_60px_rgba(0,0,0,0.1),_inset_0_1px_2px_rgba(255,255,255,0.9)] hover:shadow-[0_35px_80px_rgba(0,0,0,0.15),_inset_0_1px_3px_rgba(255,255,255,1)] transition-all duration-700">
                 <h4 className="text-2xl font-bold text-gray-900 mb-4 text-center">
                   {t.aboutUs.vision}
                 </h4>

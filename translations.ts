@@ -12,6 +12,9 @@ export const translations = {
       eservice: 'المحتوى التعليمي',
       metaAdsMaster: 'دورة إتقان إعلانات ميتا',
       metaAdsManager: 'محاكي مدير الإعلانات',
+      faq: 'الأسئلة الشائعة',
+      back: 'رجوع',
+      free: 'مجاناً',
     },
     aboutUs: {
       heading: 'من نحن',
@@ -160,6 +163,9 @@ export const translations = {
       eservice: 'Educational Content',
       metaAdsMaster: 'Meta Ads Master Class',
       metaAdsManager: 'Ads Manager Simulator',
+      faq: 'FAQs',
+      back: 'Back',
+      free: 'Free',
     },
     aboutUs: {
       heading: 'About Us',

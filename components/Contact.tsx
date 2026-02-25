@@ -25,26 +25,26 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen pt-20 pb-0 md:pt-24 md:pb-4 bg-blue-50 flex flex-col justify-center">
+    <section id="contact" className="min-h-screen pt-20 pb-0 md:pt-24 md:pb-4 bg-transparent flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-center">
-        
+
         {/* Mobile Icon Banner */}
         <div className="lg:hidden flex-col justify-between items-center bg-brand-blue text-white p-4 rounded-t-2xl shadow-lg mb-0 z-10 shrink-0">
-           <div className="lg:hidden flex justify-between items-center ">
-           <div className="font-bold text-lg">{t.contact.heading}</div>
-           <div className="flex gap-3">
-              <a href="https://wa.me/201118080265" target="_blank" className="bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors"><Phone className="w-5 h-5"/></a>
-              <a href="mailto:marketing@medestra.me" className="bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors"><Mail className="w-5 h-5"/></a>
-              <a href="https://www.google.com/maps" target="_blank" className="bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors"><MapPin className="w-5 h-5"/></a>
-           </div>
-           </div>
-           <p className="text-blue-100 mb-2 mt-2 text">
-              {t.contact.subheading}
-            </p>
+          <div className="lg:hidden flex justify-between items-center ">
+            <div className="font-bold text-lg">{t.contact.heading}</div>
+            <div className="flex gap-3">
+              <a href="https://wa.me/201118080265" target="_blank" className="bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors"><Phone className="w-5 h-5" /></a>
+              <a href="mailto:marketing@medestra.me" className="bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors"><Mail className="w-5 h-5" /></a>
+              <a href="https://www.google.com/maps" target="_blank" className="bg-white/20 p-2 rounded-full hover:bg-white/30 transition-colors"><MapPin className="w-5 h-5" /></a>
+            </div>
+          </div>
+          <p className="text-blue-100 mb-2 mt-2 text">
+            {t.contact.subheading}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 bg-white rounded-b-2xl lg:rounded-3xl shadow-xl overflow-hidden h-auto lg:h-auto shrink flex-1 lg:flex-none">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-8 bg-white/[0.05] backdrop-blur-[40px] rounded-b-[2rem] lg:rounded-[3rem] border-t-[2.5px] border-l-[2.5px] border-white/90 border-b border-r border-white/5 shadow-[0_30px_80px_rgba(0,0,0,0.15),_inset_0_1px_2px_rgba(255,255,255,0.8)] overflow-hidden h-auto lg:h-auto shrink flex-1 lg:flex-none">
+
           {/* Desktop Contact Info (Hidden on Mobile) */}
           <div className="hidden lg:flex bg-brand-blue p-8 text-white flex-col justify-between relative overflow-hidden h-full">
             <div className="relative z-10">
@@ -52,12 +52,12 @@ const Contact: React.FC = () => {
               <p className="text-blue-100 mb-10 text-lg">
                 {t.contact.subheading}
               </p>
-              
+
               <div className="space-y-4">
                 {/* WhatsApp Button */}
-                <a 
-                  href="https://wa.me/201118080265" 
-                  target="_blank" 
+                <a
+                  href="https://wa.me/201118080265"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-green-500/30 w-full"
                 >
@@ -67,16 +67,6 @@ const Contact: React.FC = () => {
 
                 <div className="h-px bg-white/20 my-4"></div>
 
-                <a href="https://wa.me/201118080265" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-blue-100 uppercase">{t.contact.call}</p>
-                    <p className="font-bold text-lg" dir="ltr">+20 111 808 0265</p>
-                  </div>
-                </a>
-                
                 <a href="mailto:marketing@medestra.me" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
                   <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
                     <Mail className="w-5 h-5" />
@@ -84,6 +74,16 @@ const Contact: React.FC = () => {
                   <div>
                     <p className="text-xs text-blue-100 uppercase">{t.contact.email}</p>
                     <p className="font-bold text-lg">marketing@medestra.me</p>
+                  </div>
+                </a>
+
+                <a href="https://wa.me/201118080265" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
+                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-blue-100 uppercase">{t.contact.call}</p>
+                    <p className="font-bold text-lg" dir="ltr">+20 111 808 0265</p>
                   </div>
                 </a>
 
@@ -101,7 +101,7 @@ const Contact: React.FC = () => {
 
             {/* Decor */}
             <div className="absolute -bottom-10 -right-10 opacity-20 z-0 pointer-events-none">
-               <div className="text-[12rem] font-extrabold text-white leading-none">me</div>
+              <div className="text-[12rem] font-extrabold text-white leading-none">me</div>
             </div>
           </div>
 
@@ -137,7 +137,7 @@ const Contact: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label htmlFor="clinic" className="block text-xs md:text-sm font-medium text-gray-700 mb-1 md:mb-2">{t.contact.clinicLabel}</label>
                 <input
@@ -168,11 +168,10 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full py-3 md:py-4 rounded-xl font-bold text-sm md:text-lg flex items-center justify-center gap-2 transition-all ${
-                  isSuccess 
-                    ? 'bg-green-500 text-white cursor-default'
-                    : 'bg-brand-red text-white hover:bg-red-600 shadow-lg hover:shadow-red-200'
-                }`}
+                className={`w-full py-3 md:py-4 rounded-xl font-bold text-sm md:text-lg flex items-center justify-center gap-2 transition-all ${isSuccess
+                  ? 'bg-green-500 text-white cursor-default'
+                  : 'bg-brand-red text-white hover:bg-red-600 shadow-lg hover:shadow-red-200'
+                  }`}
               >
                 {isSuccess ? (
                   t.contact.success

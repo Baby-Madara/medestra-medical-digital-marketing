@@ -8,19 +8,35 @@ import Markets from './Markets';
 import Contact from './Contact';
 import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
-// import CustomCursor from './CustomCursor';
+
+import { FadeInSection } from './FadeInSection';
 
 const LandingPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-transparent">
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <Hero />
-        <AboutUs />
-        <Services />
-        <Beneficiaries />
-        <Markets />
-        <Contact />
+
+        <FadeInSection>
+          <AboutUs />
+        </FadeInSection>
+
+        <FadeInSection>
+          <Services />
+        </FadeInSection>
+
+        <FadeInSection>
+          <Beneficiaries />
+        </FadeInSection>
+
+        <FadeInSection>
+          <Markets />
+        </FadeInSection>
+
+        <FadeInSection>
+          <Contact />
+        </FadeInSection>
       </main>
       <Footer />
       <WhatsAppButton />

@@ -47,6 +47,11 @@ const CustomCursor: React.FC = () => {
 
     // Create star
     const createStar = (x: number, y: number) => {
+      // PERFORMANCE: Limit the number of stars to prevent lag
+      if (starsRef.current.length > 35) {
+        starsRef.current.shift();
+      }
+
       const size = Math.random() * 8 + 3; // 3-11px
       const vx = (Math.random() - 0.5) * 3; // Horizontal velocity
       const vy = Math.random() * 2 + 1; // Falling velocity
@@ -55,7 +60,7 @@ const CustomCursor: React.FC = () => {
       starsRef.current.push({
         id: starIdRef.current++,
         x,
-        y,
+        y: y - 5, // Offset slightly above cursor
         size,
         color,
         vx,
@@ -66,26 +71,28 @@ const CustomCursor: React.FC = () => {
     // Animate stars
     const animateStars = () => {
       const now = Date.now();
-      const deltaTime = (now - lastTimeRef.current) / 1000; // Convert to seconds
+      const deltaTime = (now - lastTimeRef.current) / 1000;
       lastTimeRef.current = now;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Update and draw stars
-      starsRef.current = starsRef.current.filter((star) => {
-        star.x += star.vx * 60 * deltaTime; // Apply velocity
+      // Update and draw stars - efficient loop
+      let i = starsRef.current.length;
+      while (i--) {
+        const star = starsRef.current[i];
+        star.x += star.vx * 60 * deltaTime;
         star.y += star.vy * 60 * deltaTime;
 
-        // Calculate remaining life based on falling distance
-        const distanceFallen = star.y - star.y;
-        const opacity = Math.max(0, Math.min(1, 1 - distanceFallen / 100));
+        // Life cycle based on alpha/position
+        const opacity = Math.max(0, 1 - (Date.now() - (lastTimeRef.current - 1000)) / 1000); // Decays over ~1s
 
-        // Draw star
+        if (star.y > canvas.height || opacity <= 0) {
+          starsRef.current.splice(i, 1);
+          continue;
+        }
+
         drawStar(ctx, star.x, star.y, star.size, star.color, opacity);
-
-        // Remove star if it's too far or fully transparent
-        return star.y < canvas.height && opacity > 0.05;
-      });
+      }
 
       animationFrameRef.current = requestAnimationFrame(animateStars);
     };
@@ -101,10 +108,11 @@ const CustomCursor: React.FC = () => {
       ctx.save();
       ctx.globalAlpha = opacity;
       ctx.fillStyle = color;
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 8;
 
-      // Draw 5-pointed star
+      // Reduce shadow blur for better performance on mobile/low-end devices
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 4; // Smaller blur = faster rendering
+
       const points = 5;
       const innerRadius = size / 2;
       const outerRadius = size;
@@ -115,30 +123,26 @@ const CustomCursor: React.FC = () => {
         const angle = (i * Math.PI) / points - Math.PI / 2;
         const x = cx + radius * Math.cos(angle);
         const y = cy + radius * Math.sin(angle);
-
-        if (i === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
       }
       ctx.closePath();
       ctx.fill();
-
       ctx.restore();
     };
 
     // Track mouse movement
     let lastCreatedTime = Date.now();
     const moveCursor = (e: MouseEvent) => {
+      // Use requestAnimationFrame for smooth cursor movement
       if (cursorRef.current) {
-        cursorRef.current.style.opacity = '1';
-        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) scaleX(-1)`;
+        const style = cursorRef.current.style;
+        style.opacity = '1';
+        style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) scaleX(-1)`;
       }
 
-      // Create stars every 30ms for smooth trail
       const now = Date.now();
-      if (now - lastCreatedTime > 30) {
+      if (now - lastCreatedTime > 40) { // Increased throttle for better performance
         createStar(e.clientX, e.clientY);
         lastCreatedTime = now;
       }

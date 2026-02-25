@@ -24,7 +24,7 @@ const Services: React.FC = () => {
   };
 
   return (
-    <section id="services" className="min-h-screen pt-20 pb-4 md:pt-24 md:pb-4 bg-white flex flex-col justify-center">
+    <section id="services" className="min-h-screen pt-20 pb-4 md:pt-24 md:pb-4 bg-transparent flex flex-col justify-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
@@ -45,37 +45,31 @@ const Services: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className={`h-full rounded-2xl p-8 bg-white/30 backdrop-blur-md border border-white/30 hover:bg-white/40 hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer group`}
+                className={`h-full rounded-[2.5rem] p-6 bg-white/[0.05] backdrop-blur-[40px] border-t-[2.5px] border-l-[2.5px] border-white/90 border-b border-r border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.1),_inset_0_1px_2px_rgba(255,255,255,0.9)] hover:bg-white/[0.1] hover:shadow-[0_30px_70px_rgba(0,0,0,0.15),_inset_0_1px_3px_rgba(255,255,255,1)] hover:-translate-y-3 transition-all duration-700 cursor-pointer group relative overflow-hidden`}
               >
-                <div className={`w-16 h-16 rounded-2xl ${service.iconBg} flex items-center justify-center text-4xl mb-6 group-hover:scale-110 transition-transform overflow-hidden`}>
-                  {service.id === 'team-training' ? (
-                    <img 
-                      src={'/photos/Marketing Team Training.png'}
-                      alt={service.title_en}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : ['ecommerce', 'social-media', 'web-mobile', 'customer-service', 'medical-content'].includes(service.id) ? (
-                    <img 
-                      src={service.id === 'medical-content' ? '/photos/CONTENT.png' :
-                           service.id === 'ecommerce' ? '/photos/ecommerce.png' :
-                           service.id === 'social-media' ? '/photos/social media.png' :
-                           service.id === 'web-mobile' ? '/photos/WEB.png' :
-                           '/photos/CRM (2).png'}
-                      alt={service.title_en}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    getServiceIcon(service.id)
-                  )}
+                {/* Full-card Company Logo Watermark */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-[0.08] group-hover:opacity-[0.12] transition-opacity duration-700 pointer-events-none p-4">
+                  <img
+                    src="./mesestra.png"
+                    alt=""
+                    className="w-full h-full object-contain filter grayscale group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
+                  />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">
-                  {language === 'ar' ? service.title_ar : service.title_en}
-                </h3>
-                <p className="text-slate-700 mb-4 leading-relaxed">
-                  {language === 'ar' ? service.shortDesc_ar : service.shortDesc_en}
-                </p>
-                <div className="flex items-center gap-2 text-sm font-semibold" style={{ color: service.primaryColor }}>
-                  {language === 'ar' ? 'تعرف أكثر →' : 'Learn More →'}
+
+                <div className="relative z-10 flex flex-col h-full text-start">
+                  <div className="mb-3">
+                    <h3 className="text-xl font-bold text-slate-900 leading-tight">
+                      {language === 'ar' ? service.title_ar : service.title_en}
+                    </h3>
+                  </div>
+
+                  <p className="text-slate-700 mb-6 leading-relaxed text-base flex-grow">
+                    {language === 'ar' ? service.shortDesc_ar : service.shortDesc_en}
+                  </p>
+
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest mt-auto bg-white/10 w-fit px-5 py-1.5 rounded-full border border-white/30 group-hover:bg-brand-blue group-hover:text-white group-hover:border-transparent transition-all duration-500" style={{ color: service.primaryColor }}>
+                    {language === 'ar' ? 'اكتشف المزيد →' : 'Discover More →'}
+                  </div>
                 </div>
               </motion.div>
             </Link>

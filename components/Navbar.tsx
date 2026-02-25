@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Languages, ChevronDown, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X, Languages, ChevronDown, Volume2, VolumeX, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import { useAudio } from '../AudioContext';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { t, language, toggleLanguage } = useLanguage();
+  const { t, language, toggleLanguage, dir } = useLanguage();
   const { isMuted, toggleMute } = useAudio();
   const location = useLocation();
   const navigate = useNavigate();
@@ -56,9 +56,22 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
-          <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-            {/* Using placeholder until real logo is available */}
-            <img src="./mesestra.png" alt="Medestra Logo" className="h-10 md:h-12 w-auto object-contain" />
+          <div className="flex-shrink-0 flex items-center gap-4">
+            {location.pathname !== '/' && (
+              <button
+                onClick={() => navigate(-1)}
+                className={`flex items-center gap-1 px-3 py-1.5 rounded-xl border transition-all hover:scale-105 active:scale-95 ${scrolled
+                  ? 'border-gray-200 text-gray-700 bg-white/50 hover:border-brand-blue hover:text-brand-blue'
+                  : 'border-white/20 text-gray-800 bg-white/20 hover:bg-white/40'
+                  }`}
+              >
+                {dir === 'rtl' ? <ArrowRight size={18} /> : <ArrowLeft size={18} />}
+                <span className="text-sm font-bold">{t.nav.back}</span>
+              </button>
+            )}
+            <div className="cursor-pointer" onClick={() => navigate('/')}>
+              <img src="./mesestra.png" alt="Medestra Logo" className="h-10 md:h-12 w-auto object-contain" />
+            </div>
           </div>
 
           {/* Desktop Menu */}
@@ -86,9 +99,12 @@ const Navbar: React.FC = () => {
                 <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
                   <Link
                     to="/meta-ads-master"
-                    className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors text-right"
+                    className="flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors group"
                   >
-                    {t.nav.metaAdsMaster}
+                    <span>{t.nav.metaAdsMaster}</span>
+                    <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">
+                      {t.nav.free}
+                    </span>
                   </Link>
                   <Link
                     to="/meta-ads-manager"
@@ -165,10 +181,13 @@ const Navbar: React.FC = () => {
             <p className="px-3 py-2 text-xs font-bold text-gray-400 uppercase">{t.nav.eservice}</p>
             <Link
               to="/meta-ads-master"
-              className="block px-3 py-2 w-full text-start text-base font-medium text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md"
+              className="flex items-center justify-between px-3 py-2 w-full text-base font-medium text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md"
               onClick={() => setIsOpen(false)}
             >
-              {t.nav.metaAdsMaster}
+              <span>{t.nav.metaAdsMaster}</span>
+              <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">
+                {t.nav.free}
+              </span>
             </Link>
             <Link
               to="/meta-ads-manager"
