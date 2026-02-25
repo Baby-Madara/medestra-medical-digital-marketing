@@ -15,6 +15,16 @@ export const Certificate: React.FC<CertificateProps> = ({ recipientName, onClose
   const { language } = useLanguage();
   const isAr = language === 'ar';
 
+  const certId = React.useMemo(() => {
+    const random3 = Math.floor(100 + Math.random() * 900);
+    const monthNames = ["JA", "FE", "MA", "AP", "MA", "JU", "JU", "AU", "SE", "OC", "NO", "DE"];
+    const month = monthNames[new Date().getMonth()];
+    const year = new Date().getFullYear().toString().slice(-2);
+    const initial = recipientName.trim().charAt(0).toUpperCase() || 'A';
+    const random4 = Math.random().toString(36).substring(2, 6).toUpperCase();
+    return `MED-${random3}-${month}ra${year}@${initial}/${random4}`;
+  }, [recipientName]);
+
   const handleDownload = async () => {
     if (!certificateRef.current) return;
     setIsGenerating(true);
@@ -31,15 +41,15 @@ export const Certificate: React.FC<CertificateProps> = ({ recipientName, onClose
       });
 
       const imgData = canvas.toDataURL('image/png');
-      
+
       // A4 Landscape size: 297mm x 210mm
       const pdf = new jsPDF('l', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
-      
+
       pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
       pdf.save(`Meta_Ads_Certificate_${recipientName.replace(/\s+/g, '_')}.pdf`);
-      
+
     } catch (error) {
       console.error('Error generating PDF:', error);
       alert(isAr ? 'حدث خطأ أثناء إنشاء الشهادة. يرجى المحاولة مرة أخرى.' : 'Error generating certificate. Please try again.');
@@ -51,7 +61,7 @@ export const Certificate: React.FC<CertificateProps> = ({ recipientName, onClose
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 overflow-y-auto" dir={isAr ? "rtl" : "ltr"}>
       <div className="relative w-full max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-        
+
         {/* Header / Toolbar */}
         <div className="bg-slate-800 text-white p-4 flex justify-between items-center shrink-0">
           <div className="flex items-center gap-2">
@@ -59,7 +69,7 @@ export const Certificate: React.FC<CertificateProps> = ({ recipientName, onClose
             <span className="font-bold">{isAr ? 'معاينة الشهادة' : 'Certificate Preview'}</span>
           </div>
           <div className="flex items-center gap-3">
-            <button 
+            <button
               onClick={handleDownload}
               disabled={isGenerating}
               className="flex items-center gap-2 bg-meta-blue hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-bold transition-colors disabled:opacity-50"
@@ -67,7 +77,7 @@ export const Certificate: React.FC<CertificateProps> = ({ recipientName, onClose
               {isGenerating ? <Loader className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
               {isGenerating ? (isAr ? 'جاري التحميل...' : 'Downloading...') : (isAr ? 'تحميل PDF' : 'Download PDF')}
             </button>
-            <button 
+            <button
               onClick={onClose}
               className="p-2 hover:bg-slate-700 rounded-lg transition-colors"
             >
@@ -78,99 +88,99 @@ export const Certificate: React.FC<CertificateProps> = ({ recipientName, onClose
 
         {/* Scrollable Container for Certificate */}
         <div className="flex-1 overflow-auto bg-slate-100 p-8 flex justify-center">
-          
+
           {/* Certificate Design - A4 Landscape */}
-          <div 
+          <div
             ref={certificateRef}
             className="w-[1000px] h-[707px] bg-white relative shadow-xl shrink-0 text-slate-900 flex flex-col"
-            style={{ direction: 'ltr' }} 
+            style={{ direction: 'ltr' }}
           >
-             {/* Border Layer */}
-             <div className="absolute inset-4 border-4 border-double border-meta-blue/30 pointer-events-none"></div>
-             <div className="absolute inset-6 border border-meta-gold pointer-events-none"></div>
+            {/* Border Layer */}
+            <div className="absolute inset-4 border-4 border-double border-meta-blue/30 pointer-events-none"></div>
+            <div className="absolute inset-6 border border-meta-gold pointer-events-none"></div>
 
-             {/* Corner Ornaments */}
-             <div className="absolute top-0 left-0 w-32 h-32 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-meta-blue/20 via-transparent to-transparent"></div>
-             <div className="absolute bottom-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_bottom_right,_var(--tw-gradient-stops))] from-meta-blue/20 via-transparent to-transparent"></div>
+            {/* Corner Ornaments */}
+            <div className="absolute top-0 left-0 w-32 h-32 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-meta-blue/20 via-transparent to-transparent"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-[radial-gradient(circle_at_bottom_right,_var(--tw-gradient-stops))] from-meta-blue/20 via-transparent to-transparent"></div>
 
-             {/* Content */}
-             <div className="flex-1 flex flex-col items-center justify-between py-16 px-16 relative z-10 font-sans">
-                
-                {/* Header Logos */}
-                <div className="flex justify-between w-full items-center mb-4">
-                   <div className="text-left">
-                      <h2 className="text-2xl font-bold text-slate-800 tracking-widest uppercase font-serif">Medestra</h2>
-                      <p className="text-xs text-slate-500 tracking-[0.2em] uppercase">Online Academy</p>
-                   </div>
-                   {/* Logo Container - Using flex centering + max-width/height prevents distortion in html2canvas */}
-                   <div className="w-32 h-24 flex items-center justify-end">
-                      <img 
-                        src="https://lh3.googleusercontent.com/d/1sBR2GW-CwhHfpREEl8cXdYX3tNbBzb6g" 
-                        alt="Logo" 
-                        className="max-w-full max-h-full"
-                        crossOrigin="anonymous"
-                      />
-                   </div>
+            {/* Content */}
+            <div className="flex-1 flex flex-col items-center justify-between py-16 px-16 relative z-10 font-sans">
+
+              {/* Header Logos */}
+              <div className="flex justify-between w-full items-center mb-4">
+                <div className="text-left">
+                  <h2 className="text-2xl font-bold text-slate-800 tracking-widest uppercase font-serif">Medestra</h2>
+                  <p className="text-xs text-slate-500 tracking-[0.2em] uppercase">Online Academy</p>
+                </div>
+                {/* Logo Container - Using flex centering + max-width/height prevents distortion in html2canvas */}
+                <div className="w-32 h-24 flex items-center justify-end">
+                  <img
+                    src="https://lh3.googleusercontent.com/d/1sBR2GW-CwhHfpREEl8cXdYX3tNbBzb6g"
+                    alt="Logo"
+                    className="max-w-full max-h-full"
+                    crossOrigin="anonymous"
+                  />
+                </div>
+              </div>
+
+              {/* Title */}
+              <div className="text-center space-y-2">
+                <h1 className="text-5xl font-extrabold text-meta-blue mb-1 tracking-tight font-serif uppercase">Certificate</h1>
+                <p className="text-xl text-slate-500 font-medium tracking-[0.3em] uppercase">Of Completion</p>
+              </div>
+
+              {/* Body Text */}
+              <div className="text-center w-full max-w-3xl space-y-6">
+                <p className="text-lg text-slate-600 font-serif italic">
+                  This certificate is proudly presented to
+                </p>
+
+                <div className="py-2 border-b-2 border-slate-200 w-full min-h-[80px] flex items-end justify-center">
+                  <h2 className="text-5xl font-script text-slate-900 leading-tight pb-2">
+                    {recipientName}
+                  </h2>
                 </div>
 
-                {/* Title */}
-                <div className="text-center space-y-2">
-                  <h1 className="text-5xl font-extrabold text-meta-blue mb-1 tracking-tight font-serif uppercase">Certificate</h1>
-                  <p className="text-xl text-slate-500 font-medium tracking-[0.3em] uppercase">Of Completion</p>
+                <div className="text-lg text-slate-600 leading-relaxed font-serif">
+                  <p className="mb-2">For successfully completing the comprehensive training course</p>
+                  <p className="font-bold text-meta-blue text-2xl font-sans mb-2">Meta Ads Master Class</p>
+                  <p>and demonstrating exceptional skills in digital advertising strategy and campaign management.</p>
                 </div>
+              </div>
 
-                {/* Body Text */}
-                <div className="text-center w-full max-w-3xl space-y-6">
-                  <p className="text-lg text-slate-600 font-serif italic">
-                    This certificate is proudly presented to
-                  </p>
-                  
-                  <div className="py-2 border-b-2 border-slate-200 w-full min-h-[80px] flex items-end justify-center">
-                    <h2 className="text-5xl font-script text-slate-900 leading-tight pb-2">
-                      {recipientName}
-                    </h2>
+              {/* Signatures & Date */}
+              <div className="flex justify-between items-end w-full mt-10 px-8">
+
+                {/* Date */}
+                <div className="text-center w-48">
+                  <div className="border-b border-slate-400 pb-2 mb-2 text-lg font-bold text-slate-800 font-serif">
+                    {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                   </div>
+                  <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Date</p>
+                </div>
 
-                  <div className="text-lg text-slate-600 leading-relaxed font-serif">
-                    <p className="mb-2">For successfully completing the comprehensive training course</p>
-                    <p className="font-bold text-meta-blue text-2xl font-sans mb-2">Meta Ads Master Class</p>
-                    <p>and demonstrating exceptional skills in digital advertising strategy and campaign management.</p>
+                {/* Signature */}
+                <div className="text-center w-64">
+                  <div className="border-b border-slate-400 pb-2 mb-2 relative h-20 flex items-end justify-center">
+                    <img
+                      src="https://lh3.googleusercontent.com/d/1UhcX3cRqK73ZiPyM9SC8ZYd9joicnXL5"
+                      className="max-h-full max-w-full"
+                      alt="Signature"
+                      crossOrigin="anonymous"
+                    />
                   </div>
+                  <p className="font-bold text-slate-800 font-serif">Dr. Mahmoud Hussein</p>
+                  <p className="text-xs text-meta-blue font-bold uppercase tracking-wider">CEO, Medestra</p>
                 </div>
+              </div>
 
-                {/* Signatures & Date */}
-                <div className="flex justify-between items-end w-full mt-10 px-8">
-                   
-                   {/* Date */}
-                   <div className="text-center w-48">
-                      <div className="border-b border-slate-400 pb-2 mb-2 text-lg font-bold text-slate-800 font-serif">
-                        {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                      </div>
-                      <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">Date</p>
-                   </div>
-                   
-                   {/* Signature */}
-                   <div className="text-center w-64">
-                      <div className="border-b border-slate-400 pb-2 mb-2 relative h-20 flex items-end justify-center">
-                         <img 
-                           src="https://lh3.googleusercontent.com/d/1UhcX3cRqK73ZiPyM9SC8ZYd9joicnXL5" 
-                           className="max-h-full max-w-full"
-                           alt="Signature"
-                           crossOrigin="anonymous"
-                         />
-                      </div>
-                      <p className="font-bold text-slate-800 font-serif">Dr. Mahmoud Hussein</p>
-                      <p className="text-xs text-meta-blue font-bold uppercase tracking-wider">CEO, Medestra</p>
-                   </div>
-                </div>
-
-                {/* Footer ID */}
-                <div className="absolute bottom-4 w-full text-center">
-                   <p className="text-[10px] text-slate-300 font-mono">
-                      ID: {Math.random().toString(36).substr(2, 9).toUpperCase()} • Medestra Online Academy
-                   </p>
-                </div>
-             </div>
+              {/* Footer ID */}
+              <div className="absolute bottom-4 w-full text-center">
+                <p className="text-[10px] text-slate-300 font-mono">
+                  ID: {certId} • Medestra Online Academy
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

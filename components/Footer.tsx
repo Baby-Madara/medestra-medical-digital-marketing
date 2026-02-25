@@ -4,7 +4,7 @@ import { useLanguage } from '../LanguageContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Footer: React.FC = () => {
-  const { t, dir } = useLanguage();
+  const { t, dir, language } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -104,8 +104,20 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-100 pb-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500" dir={dir}>
-          <p>{t.footer.rights}</p>
+        <div className="border-t border-gray-100 pb-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 gap-6" dir={dir}>
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            <p>{t.footer.rights}</p>
+            <div className="h-px w-8 bg-gray-200 hidden md:block"></div>
+            <div className="flex items-center gap-3 bg-gray-50/50 px-4 py-2 rounded-xl border border-gray-100 shadow-sm">
+              <img src="/photos/الضرائب.png" alt="Tax Logo" className="h-10 md:h-12 w-auto object-contain" />
+              <div className="flex flex-col">
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                  {language === 'ar' ? 'رقم التسجيل الضريبي' : 'Tax Registration Number'}
+                </span>
+                <span className="font-mono font-bold text-gray-700 tracking-wider">4607466263084392</span>
+              </div>
+            </div>
+          </div>
           <p className="mt-2 md:mt-0">{t.footer.madeIn}</p>
         </div>
       </div>

@@ -87,34 +87,13 @@ const Navbar: React.FC = () => {
               </a>
             ))}
 
-            {/* E-Service Dropdown */}
-            <div className="relative group">
-              <button
-                className={`flex items-center gap-1 text-base font-medium transition-colors hover:text-brand-blue ${scrolled ? 'text-gray-700' : 'text-gray-800'}`}
-              >
-                {t.nav.eservice}
-                <ChevronDown size={16} />
-              </button>
-              <div className="absolute top-full right-0 w-56 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right z-50">
-                <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
-                  <Link
-                    to="/meta-ads-master"
-                    className="flex items-center justify-between px-4 py-3 text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors group"
-                  >
-                    <span>{t.nav.metaAdsMaster}</span>
-                    <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">
-                      {t.nav.free}
-                    </span>
-                  </Link>
-                  <Link
-                    to="/meta-ads-manager"
-                    className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-brand-blue hover:text-white transition-colors text-right"
-                  >
-                    {t.nav.metaAdsManager}
-                  </Link>
-                </div>
-              </div>
-            </div>
+            {/* E-Service Link (Direct to Landing Page) */}
+            <Link
+              to="/academy"
+              className={`text-base font-medium transition-colors hover:text-brand-blue ${scrolled ? 'text-gray-700' : 'text-gray-800'}`}
+            >
+              {t.nav.eservice}
+            </Link>
 
             <button
               onClick={toggleLanguage}
@@ -176,27 +155,13 @@ const Navbar: React.FC = () => {
             </a>
           ))}
 
-          {/* Mobile E-Service Item */}
-          <div className="w-full border-t border-gray-100 my-2 pt-2">
-            <p className="px-3 py-2 text-xs font-bold text-gray-400 uppercase">{t.nav.eservice}</p>
-            <Link
-              to="/meta-ads-master"
-              className="flex items-center justify-between px-3 py-2 w-full text-base font-medium text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md"
-              onClick={() => setIsOpen(false)}
-            >
-              <span>{t.nav.metaAdsMaster}</span>
-              <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">
-                {t.nav.free}
-              </span>
-            </Link>
-            <Link
-              to="/meta-ads-manager"
-              className="block px-3 py-2 w-full text-start text-base font-medium text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md"
-              onClick={() => setIsOpen(false)}
-            >
-              {t.nav.metaAdsManager}
-            </Link>
-          </div>
+          <Link
+            to="/academy"
+            className="block px-3 py-3 w-full text-start text-base font-medium text-gray-700 hover:text-brand-blue hover:bg-gray-50 rounded-md border-t border-gray-100 mt-2"
+            onClick={() => setIsOpen(false)}
+          >
+            {t.nav.eservice}
+          </Link>
 
           <a
             href="/#contact"
@@ -206,8 +171,8 @@ const Navbar: React.FC = () => {
             {t.nav.book}
           </a>
         </div>
-      </div>
-    </nav>
+      </div >
+    </nav >
   );
 };
 

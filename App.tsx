@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './LanguageContext';
 import { AudioProvider } from './AudioContext';
 import CustomCursor from './components/CustomCursor';
@@ -12,6 +12,17 @@ const MetaAdsManagerPage = lazy(() => import('./MetaAdsManagerPage'));
 const MetaAdsPage = lazy(() => import('./MetaAdsPage'));
 const ServiceLanding = lazy(() => import('./components/ServiceLanding'));
 const FAQPage = lazy(() => import('./components/FAQPage'));
+const AcademyLanding = lazy(() => import('./components/AcademyLanding'));
+const CertificateVerification = lazy(() => import('./components/CertificateVerification'));
+const PharmacySalesCourse = lazy(() => import('./components/PharmacySalesCourse'));
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 const App: React.FC = () => {
   const [showSplash, setShowSplash] = React.useState(true);
@@ -27,6 +38,7 @@ const App: React.FC = () => {
 
   return (
     <HashRouter>
+      <ScrollToTop />
       <CustomCursor />
       <GlobalBackground />
 
@@ -39,6 +51,9 @@ const App: React.FC = () => {
               <Route path="/meta-ads-master" element={<MetaAdsPage />} />
               <Route path="/meta-ads-manager" element={<MetaAdsManagerPage />} />
               <Route path="/faq" element={<FAQPage />} />
+              <Route path="/academy" element={<AcademyLanding />} />
+              <Route path="/verify-certificate" element={<CertificateVerification />} />
+              <Route path="/pharmacy-sales" element={<PharmacySalesCourse />} />
             </Routes>
           </Suspense>
         </AudioProvider>

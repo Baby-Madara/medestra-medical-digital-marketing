@@ -1,17 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { X, Send, Bot, Loader2, Sparkles, User, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const API_KEY = process.env.VITE_GEMINI_API_KEY || '';
+const API_KEY = 'gen-lang-client-0475464080';
 
 interface Message {
     role: 'user' | 'model';
     text: string;
 }
 
-export const MeAI = () => {
+export const MeAI: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showTooltip, setShowTooltip] = useState(true);
     const [messages, setMessages] = useState<Message[]>([]);
@@ -57,44 +57,27 @@ export const MeAI = () => {
         setIsLoading(true);
 
         try {
-            const ai = new GoogleGenAI({ apiKey: API_KEY });
-            const model = 'gemini-1.5-flash';
-
             const systemInstruction = isAr
-                ? `أنت مساعد ذكي اسمك "me" خبير في التسويق الرقمي الطبي (Medical Digital Marketing) وتعمل لدى شركة ميديسترا (Medestra).
-         هدفك الأساسي هو:
-         1. تقديم معلومات دقيقة وقيمة حول التسويق الطبي (نمو العيادات، المحتوى الطبي، إدارة السوشيال ميديا للمستشفيات، إلخ).
-         2. الترويج لخدمات شركة ميديسترا بشكل ذكي وجذاب. 
-         3. تشجيع المستخدمين على طلب استشارة أو عرض سعر من ميديسترا.
-         4. أخبر المستخدم دائماً أن ميديسترا هي الشريك الأمثل للنجاح في الخليج والشرق الأوسط.
-         - أجب باختصار وودود.
-         - استخدم لغة عربية مهنية وسهلة.
-         - إذا كان السؤال تافهاً أو خارج النطاق، وجه المستخدم بلطف للحديث عن التسويق الطبي.`
-                : `You are an AI assistant named "me", an expert in Medical Digital Marketing working for Medestra.
-         Your primary goals are:
-         1. Provide accurate and valuable information about medical marketing (clinic growth, medical content, social media management for hospitals, etc.).
-         2. Promote Medestra's services in a smart and engaging way.
-         3. Encourage users to request a consultation or quote from Medestra.
-         4. Always tell the user that Medestra is the ideal partner for success in the Gulf and Middle East.
-         - Answer concisely and friendly.
-         - Use professional yet accessible language.
-         - If the question is irrelevant or out of scope, gently redirect the user to talk about medical marketing.`;
+                ? `أنت مساعد ذكي اسمك "me" خبير في التسويق الرقمي الطبي وتعمل لدى شركة ميديسترا (Medestra).
+                   هدفك الأساسي هو تقديم معلومات دقيقة والترويج لخدمات ميديسترا.`
+                : `You are an AI assistant named "me" expert in Medical Marketing. Provide accurate info and promote Medestra.`;
 
-            const response = await ai.models.generateContent({
-                model: model,
-                contents: [
-                    ...messages.map(m => ({
-                        role: m.role,
-                        parts: [{ text: m.text }]
-                    })),
-                    { role: 'user', parts: [{ text: userMessage }] }
-                ],
-                config: {
-                    systemInstruction: systemInstruction,
-                }
+            const genAI = new GoogleGenerativeAI(API_KEY);
+            const model = genAI.getGenerativeModel({
+                model: 'gemini-1.5-flash',
+                systemInstruction: systemInstruction
             });
 
-            const text = response.text || (isAr ? "عذراً، لم أستطع توليد إجابة." : "Sorry, I couldn't generate a response.");
+            const chat = model.startChat({
+                history: messages.map(m => ({
+                    role: m.role,
+                    parts: [{ text: m.text }]
+                })),
+            });
+
+            const result = await chat.sendMessage(userMessage);
+            const response = result.response;
+            const text = response.text();
             setMessages(prev => [...prev, { role: 'model', text: text }]);
         } catch (error) {
             console.error("Error generating response:", error);

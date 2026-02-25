@@ -1,0 +1,135 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle, XCircle, ShieldCheck, Search, Award, Calendar, User } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
+import Navbar from './Navbar';
+import Footer from './Footer';
+
+const CertificateVerification: React.FC = () => {
+    const { t, language, dir } = useLanguage();
+    const [certId, setCertId] = useState('');
+    const [status, setStatus] = useState<'idle' | 'loading' | 'valid' | 'invalid'>('idle');
+    const isAr = language === 'ar';
+
+    // Regex for ID format: MED-[3 Random Numbers]-[2 Month Letters]ra[2 Year Numbers]@[Initial]/[4 Random Chars]
+    // Example: MED-382-FEra26@M/qdDG
+    const certRegex = /^MED-\d{3}-[A-Z]{2}ra\d{2}@[A-Z]\/[A-Z0-9]{4}$/i;
+
+    const handleVerify = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!certId.trim()) return;
+
+        setStatus('loading');
+
+        setTimeout(() => {
+            if (certRegex.test(certId.trim())) {
+                setStatus('valid');
+            } else {
+                setStatus('invalid');
+            }
+        }, 1500);
+    };
+
+    return (
+        <div className="min-h-screen bg-gray-50 font-sans">
+            <Navbar />
+
+            <main className="pt-32 pb-20 px-4">
+                <div className="max-w-3xl mx-auto">
+                    {/* Header */}
+                    <div className="text-center mb-12">
+                        <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="w-20 h-20 bg-brand-blue/10 rounded-full flex items-center justify-center mx-auto mb-6"
+                        >
+                            <ShieldCheck className="w-10 h-10 text-brand-blue" />
+                        </motion.div>
+                        <h1 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                            {t.certificate.title}
+                        </h1>
+                        <p className="text-gray-600 text-lg max-w-xl mx-auto">
+                            {t.certificate.subtitle}
+                        </p>
+                    </div>
+
+                    {/* Verification Card */}
+                    <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-brand-blue/5 border border-gray-100 overflow-hidden">
+                        <div className="p-8 md:p-12">
+                            <form onSubmit={handleVerify} className="relative mb-8 text-center">
+                                <div className="relative group">
+                                    <input
+                                        type="text"
+                                        value={certId}
+                                        onChange={(e) => setCertId(e.target.value)}
+                                        placeholder={t.certificate.placeholder}
+                                        className={`w-full px-8 py-5 rounded-2xl bg-gray-50 border-2 transition-all outline-none text-lg font-mono text-center tracking-widest ${status === 'invalid' ? 'border-red-200 focus:border-red-400' : 'border-gray-100 focus:border-brand-blue'
+                                            }`}
+                                    />
+                                    <Search className={`absolute ${isAr ? 'left-6' : 'right-6'} top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-blue transition-colors`} />
+                                </div>
+                                <button
+                                    type="submit"
+                                    disabled={status === 'loading'}
+                                    className="mt-6 w-full md:w-auto px-12 py-4 bg-brand-blue text-white rounded-2xl font-bold text-lg hover:shadow-xl hover:shadow-brand-blue/30 active:scale-95 transition-all disabled:opacity-50"
+                                >
+                                    {status === 'loading' ? (
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                            <span>{isAr ? 'جاري التحقق...' : 'Verifying...'}</span>
+                                        </div>
+                                    ) : t.certificate.verify}
+                                </button>
+                            </form>
+
+                            <AnimatePresence mode="wait">
+                                {status === 'valid' && (
+                                    <motion.div
+                                        key="valid"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        className="bg-green-50 border border-green-100 rounded-3xl p-8 text-center"
+                                    >
+                                        <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                                        <h3 className="text-xl font-bold text-green-800 mb-2">{t.certificate.valid}</h3>
+                                    </motion.div>
+                                )}
+
+                                {status === 'invalid' && (
+                                    <motion.div
+                                        key="invalid"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        className="bg-red-50 border border-red-100 rounded-3xl p-8 text-center"
+                                    >
+                                        <XCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+                                        <h3 className="text-xl font-bold text-red-800">{t.certificate.invalid}</h3>
+                                        <p className="text-red-600/70 mt-2 text-sm">
+                                            {isAr
+                                                ? 'يرجى التأكد من كتابة الرقم بشكل صحيح أو التواصل معنا للدعم.'
+                                                : 'Please check the ID or contact us for support.'}
+                                        </p>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Security Badge */}
+                        <div className="bg-gray-50 border-t border-gray-100 p-6 flex items-center justify-center gap-3">
+                            <ShieldCheck className="text-brand-blue" size={24} />
+                            <span className="text-sm font-bold text-gray-500 uppercase tracking-widest">
+                                Medestra Anti-Forgery Shield Active
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <Footer />
+        </div>
+    );
+};
+
+export default CertificateVerification;
