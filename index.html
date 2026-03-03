@@ -7,6 +7,31 @@
   <meta name="theme-color" content="#0ea5e9" />
   <title>Medestra | ميديسترا للتسويق الطبي</title>
   <!-- <title>Medestra | ميديسترا للتسويق الطبي - شريكك في النجاح الرقمي</title> -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // https://github.com/rafgraph/spa-github-pages
+    // This script checks to see if a redirect is present in the query string,
+    // converts it back into the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
+    (function (l) {
+      if (l.search[1] === 'p') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&')
+        }).filter(function (s) {
+          return s.slice(0, 2) === 'p='
+        })[0].slice(2);
+        if (decoded !== l.pathname) {
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }
+    }(window.location))
+  </script>
   <meta name="description"
     content="ميديسترا هي وكالة تسويق رقمي طبية متقدمة متخصصة في تحسين محركات البحث للرعاية الصحية، الإعلانات المدفوعة، إنتاج المحتوى واستراتيجيات نمو المستشفيات والعيادات." />
   <meta name="keywords"
@@ -67,13 +92,13 @@
 
   <!-- Google Tag Manager -->
   <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-WDNXNZM4');</script>
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-WDNXNZM4');</script>
   <!-- End Google Tag Manager -->
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -188,10 +213,10 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/index-BRUWGqov.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/react-vendor-Cca_a8RV.js">
-  <link rel="modulepreload" crossorigin href="/assets/ui-vendor-B4lPDIT9.js">
-  <link rel="modulepreload" crossorigin href="/assets/utils-vendor-DbBuZWd_.js">
+  <script type="module" crossorigin src="/assets/index-Cpn1ufVV.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/react-vendor-CGnMfvvm.js">
+  <link rel="modulepreload" crossorigin href="/assets/ui-vendor-CJX3kORj.js">
+  <link rel="modulepreload" crossorigin href="/assets/utils-vendor-DgTAH_BQ.js">
 </head>
 
 <body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
